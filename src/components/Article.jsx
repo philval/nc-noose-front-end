@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ArticleComments from './ArticleComments'
 
 class Article extends Component {
 
@@ -15,7 +16,7 @@ class Article extends Component {
   }
 
   render() {
-    console.log(this.props); // get articleID from props object
+    // get articleID from props object
     const { singleArticle } = this.state;
     const created_at = new Date(singleArticle.created_at).toString();
     // TODO DD MM YYYY
@@ -27,7 +28,7 @@ class Article extends Component {
         <p>{singleArticle.body}</p>
         <p>Comments: {singleArticle.comment_count} | Votes: {singleArticle.votes}</p>
         <hr />
-        {/* <Comments articleID={this.props.articleID} /> */}
+        <ArticleComments articleID={this.props.articleID} />
       </div>
 
     );

@@ -17,8 +17,6 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
-    console.log(articles[0], ' <<<<')
-
     return (
       <div className="home-articles" articles={articles}>
         <h2>ARTICLES</h2>
