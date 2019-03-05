@@ -1,12 +1,12 @@
 import React from 'react'
-
+import { Link } from "@reach/router";
 
 const Nav = () => {
   return (
     <nav>
-      <a href="/">Home</a>
-      <a href="/account">User Account</a>
-      <a href="/search">Search</a>
+      <Link to="/">Home</Link>
+      <Link to="/account">Account</Link>
+      <Link to="/search">Search</Link>
     </nav >
   )
 }

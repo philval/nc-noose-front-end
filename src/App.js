@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
-// import logo from './logo.svg';
 import './App.css';
+import { Router } from "@reach/router";
 import Header from './components/Header.jsx'
 import Homepage from './components/Homepage.jsx'
-
+import Account from './components/Account.jsx'
+import Search from './components/Search'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
         <Header />
-        <Homepage />
+        <Router>
+          <Homepage path="/" />
+          <Account path="/account" />
+          <Search path="/search" />
+        </Router>
       </div >
     );
   }
