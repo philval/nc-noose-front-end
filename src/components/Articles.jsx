@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from '@reach/router';
 
 class Articles extends Component {
 
@@ -22,7 +23,7 @@ class Articles extends Component {
       <div className="home-articles" articles={articles}>
         <h2>ARTICLES</h2>
         <ul>
-          {articles && articles.map(article => <li key={article.article_id}>{article.title}</li>)}
+          {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)}
         </ul>
       </div>
     )
