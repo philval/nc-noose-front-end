@@ -15,4 +15,14 @@ function getCommentsByArticleByID(id) {
     .then(response => response.json())
 }
 
-export { getArticles, getArticleByID, getCommentsByArticleByID };
+function getTopics() {
+  return fetch(`${DOMAIN}/api/topics`)
+    .then(response => response.json())
+}
+
+function getArticlesByTopic(topic) {
+  return fetch(`${DOMAIN}/api/articles/?topic=${topic}`)
+    .then(response => response.json())
+}
+
+export { getArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic };
