@@ -16,7 +16,6 @@ class Sidebar extends Component {
 
   render() {
     const { topics } = this.state;
-    console.log(topics);
     return (
       <div className="home-sidebar">
         <h2>TOPICS</h2>

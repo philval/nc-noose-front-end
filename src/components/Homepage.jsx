@@ -9,7 +9,7 @@ const Homepage = () => {
       <p>Welcome to the homepage</p>
       <Articles />
       <Comments />
-      <Sidebar />
+      {/* <Sidebar /> */}
     </div>
   )
 }

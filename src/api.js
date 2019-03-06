@@ -20,7 +20,7 @@ function getTopics() {
     .then(response => response.json())
 }
 
-function getArticlesByTopic(topic) {
+function getArticlesByTopic(topic = '') {
   return fetch(`${DOMAIN}/api/articles/?topic=${topic}`)
     .then(response => response.json())
 }
