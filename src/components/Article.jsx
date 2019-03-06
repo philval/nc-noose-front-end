@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import ArticleComments from './ArticleComments'
+import { getArticleByID } from '../api';
 
 class Article extends Component {
 
@@ -7,10 +8,9 @@ class Article extends Component {
     singleArticle: [],
   }
 
-  // articleID from props object via @reach/router
   componentDidMount = () => {
-    fetch(`http://localhost:9090/api/articles/${this.props.articleID}`)
-      .then(response => response.json())
+    const id = this.props.articleID;
+    getArticleByID(id)
       .then(({ article }) => this.setState({ singleArticle: article }))
       .catch(err => console.log(err))
   }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
+import { getArticles } from '../api';
 
 class Articles extends Component {
 
@@ -7,10 +8,8 @@ class Articles extends Component {
     articles: [],
   }
 
-  // setState forces re render
   componentDidMount = () => {
-    fetch('http://localhost:9090/api/articles')
-      .then(response => response.json())
+    getArticles()
       .then(({ articles }) => this.setState({ articles: articles }))
       .catch(err => console.log(err))
   }
