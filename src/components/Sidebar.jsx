@@ -21,8 +21,6 @@ class Sidebar extends Component {
         <h2>TOPICS</h2>
         <ul>
           {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.description}</Link></li>)}
-          {/* {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)} */}
-
         </ul>
       </div>
     )

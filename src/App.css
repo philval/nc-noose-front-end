@@ -33,6 +33,15 @@ h1 {
   padding:1rem;
 }
 
+button {
+  padding: .5rem;
+  margin: 0 .5rem;
+}
+
+.single-article button {
+  display: inline;
+}
+
 
 /*
 .App-logo {

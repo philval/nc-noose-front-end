@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:9090/api';
 function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
   if (topic) url += `topic=${topic}`;
-  if (sortBy) url += `sort_by=${sortBy}`
+  if (sortBy) url += `&sort_by=${sortBy}`
   console.log(url, '<< url')
   return fetch(url)
     .then(response => response.json())

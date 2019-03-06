@@ -16,35 +16,46 @@ class Articles extends Component {
   componentDidMount = () => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
-    if (topic === undefined) { // get rid
+    // if (topic === undefined) { // get rid
+
       getArticles(topic, sortBy)
         .then(({ articles }) => this.setState({ articles: articles }))
-        .catch(err => console.log(err))
-    } else {
-      getArticlesByTopic(topic)
-        .then(({ articles }) => this.setState({ articles: articles }))
-        .catch(err => console.log(err))
-    }
+        .catch(err => console.log(err)) 
+
+    //   getArticles(topic, sortBy)
+    //     .then(({ articles }) => this.setState({ articles: articles }))
+    //     .catch(err => console.log(err))
+    // } else {
+    //   getArticlesByTopic(topic)
+    //     .then(({ articles }) => this.setState({ articles: articles }))
+    //     .catch(err => console.log(err))
+    // }
   }
 
   componentDidUpdate = (prevProps) => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
     if (prevProps.topic !== this.props.topic) {
-      if (topic === undefined) {
-        getArticles(topic, sortBy)
-          .then(({ articles }) => this.setState({ articles: articles }))
-          .catch(err => console.log(err))
-      } else {
-        getArticlesByTopic(topic)
-          .then(({ articles }) => this.setState({ articles: articles }))
-          .catch(err => console.log(err))
-      }
+
+      getArticles(topic, sortBy)
+        .then(({ articles }) => this.setState({ articles: articles }))
+        .catch(err => console.log(err)) 
+
+      // if (topic === undefined) {
+      //   getArticles(topic, sortBy)
+      //     .then(({ articles }) => this.setState({ articles: articles }))
+      //     .catch(err => console.log(err))
+      // } else {
+      //   getArticlesByTopic(topic)
+      //     .then(({ articles }) => this.setState({ articles: articles }))
+      //     .catch(err => console.log(err))
+      // }
     }
   }
 
   handleSortOrder = (event) => {
     const selectedSort = event.target.value;
+    console.log(selectedSort, '<< selected')
     this.setState({ sortBy: selectedSort })
   }
 
