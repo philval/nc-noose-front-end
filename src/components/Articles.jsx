@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import { getArticles, getArticlesByTopic } from '../api';
+import { getArticles, getAllArticles, getArticlesByTopic } from '../api';
 import ArticlesSortBy from './ArticlesSortBy';
 
 class Articles extends Component {
@@ -15,8 +15,9 @@ class Articles extends Component {
   // TODO make a new function
   componentDidMount = () => {
     const topic = this.props.topic;
-    if (topic === undefined) {
-      getArticles()
+    const sortBy = this.state.sortBy;
+    if (topic === undefined) { // get rid
+      getArticles(topic, sortBy)
         .then(({ articles }) => this.setState({ articles: articles }))
         .catch(err => console.log(err))
     } else {
@@ -28,9 +29,10 @@ class Articles extends Component {
 
   componentDidUpdate = (prevProps) => {
     const topic = this.props.topic;
+    const sortBy = this.state.sortBy;
     if (prevProps.topic !== this.props.topic) {
       if (topic === undefined) {
-        getArticles()
+        getArticles(topic, sortBy)
           .then(({ articles }) => this.setState({ articles: articles }))
           .catch(err => console.log(err))
       } else {
