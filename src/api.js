@@ -9,7 +9,6 @@ function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
   if (topic) url += `topic=${topic}`;
   if (sortBy) url += `&sort_by=${sortBy}`
-  console.log(url, '<< url')
   return fetch(url)
     .then(response => response.json())
 }
@@ -35,9 +34,7 @@ function postArticle(body) {
     .then(response => response.json())
 }
 
-// no body returned
 function deleteArticleByID(ID) {
-  console.log(ID)
   return fetch(`${BASE_URL}/articles/${ID}`, {
     method: 'DELETE',
     headers: {
@@ -56,4 +53,16 @@ function getArticlesByTopic(topic = '') {
     .then(response => response.json())
 }
 
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID };
+function postComment(article_id, body) {
+  return fetch(`${BASE_URL}/articles/${article_id}/comments`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
+}
+
+// TODO tidy up
+export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment };

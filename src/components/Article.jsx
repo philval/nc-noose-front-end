@@ -4,7 +4,6 @@ import { getArticleByID, deleteArticleByID } from '../api';
 import ArticleEdit from './ArticleEdit';
 import ArticleDelete from './ArticleDelete';
 import { navigate } from '@reach/router';
-import CommentAddButton from './CommentAddButton';
 
 class Article extends Component {
 
@@ -48,9 +47,8 @@ class Article extends Component {
         <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
         <p>{singleArticle.body}</p>
         <p>Comments: {singleArticle.comment_count} | Votes: {singleArticle.votes}</p>
-        <hr />
         <ArticleComments articleID={this.props.articleID} />
-      </div>
+      </div >
 
     );
   }

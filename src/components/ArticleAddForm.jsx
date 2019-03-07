@@ -18,14 +18,3 @@ const ArticleAddForm = ({ handleArticleAddForm }) => {
 }
 
 export default ArticleAddForm
-
-// Request body accepts
-// an object containing the following properties:
-
-// title
-// body
-// topic
-// username
-
-// Responds with
-// the posted article

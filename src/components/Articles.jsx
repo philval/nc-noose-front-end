@@ -71,8 +71,10 @@ class Articles extends Component {
       <div className="home-articles" articles={articles} topic={topic}>
         <h2>ARTICLES {topic && topic}</h2>
         <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
+        <hr />
         <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
-        {displayAddArticle && <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} displayAddArticle={this.state.displayAddArticle} />}
+        {displayAddArticle && <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} />}
+        <hr />
         <ul>
           {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)}
         </ul>
