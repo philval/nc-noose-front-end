@@ -36,4 +36,15 @@ function getArticlesByTopic(topic = '') {
     .then(response => response.json())
 }
 
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic };
+function postArticle(body) {
+  return fetch(`${BASE_URL}/articles`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
+}
+
+export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle };

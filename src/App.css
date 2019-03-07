@@ -2,15 +2,13 @@
   text-align: left;
   height: 100vh;
   background-color: #EEE;
-  padding: 1rem;
-  
+  padding: 1rem;  
 }
 
 h1 {
   margin: 0;
   margin-bottom: 2rem;
 }
-
 
 @media (min-width: 768px) {
   .home-container {
@@ -21,12 +19,10 @@ h1 {
   }
 }
 
-
 .header { grid-area: Header; }
 .home-articles { grid-area: Articles; }
 .home-comments { grid-area: Comments; }
 .home-sidebar { grid-area: Sidebar; }
-
 
 .header {
   background-color: white;
@@ -42,35 +38,14 @@ button {
   display: inline;
 }
 
+/* .article-add-form input[type="text"] {
+} */
 
-/*
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+.w100 {
+  display: block;
+  width: 100%;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.hide {
+  display: none;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-*/

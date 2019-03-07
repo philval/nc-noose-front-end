@@ -1,8 +1,8 @@
 import React from 'react'
 
-const ArticleDelete = (handleArticleDelete) => {
+const ArticleDelete = ({ handleArticleDelete }) => {
   return (
-      <button onClick={handleArticleDelete}>Delete Article</button>
+    <button onClick={handleArticleDelete}>Delete Article</button>
   )
 }
 

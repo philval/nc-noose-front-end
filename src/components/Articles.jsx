@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Link } from '@reach/router';
-import { getArticles, getAllArticles, getArticlesByTopic } from '../api';
+import { getArticles, getAllArticles, getArticlesByTopic, postArticle } from '../api';
 import ArticlesSortBy from './ArticlesSortBy';
+import ArticleAddButton from './ArticleAddButton';
+import ArticleAddForm from './ArticleAddForm';
 
 class Articles extends Component {
 
@@ -9,6 +11,7 @@ class Articles extends Component {
     articles: [],
     topic: '',
     sortBy: 'created_at',
+    displayAddArticle: false,
   }
 
   // topic from props object via @reach/router
@@ -18,9 +21,9 @@ class Articles extends Component {
     const sortBy = this.state.sortBy;
     // if (topic === undefined) { // get rid
 
-      getArticles(topic, sortBy)
-        .then(({ articles }) => this.setState({ articles: articles }))
-        .catch(err => console.log(err)) 
+    getArticles(topic, sortBy)
+      .then(({ articles }) => this.setState({ articles: articles }))
+      .catch(err => console.log(err))
 
     //   getArticles(topic, sortBy)
     //     .then(({ articles }) => this.setState({ articles: articles }))
@@ -39,7 +42,7 @@ class Articles extends Component {
 
       getArticles(topic, sortBy)
         .then(({ articles }) => this.setState({ articles: articles }))
-        .catch(err => console.log(err)) 
+        .catch(err => console.log(err))
 
       // if (topic === undefined) {
       //   getArticles(topic, sortBy)
@@ -55,8 +58,31 @@ class Articles extends Component {
 
   handleSortOrder = (event) => {
     const selectedSort = event.target.value;
-    console.log(selectedSort, '<< selected')
     this.setState({ sortBy: selectedSort })
+  }
+
+  handleArticleAddButton = (event) => {
+    const displayAddArticle = !this.state.displayAddArticle; // toggle
+    this.setState({ displayAddArticle: displayAddArticle })
+  }
+
+  handleArticleAddForm = (event) => {
+    event.preventDefault()
+    const articleTitle = document.getElementById("articleTitle").value;
+    const articleTopic = document.getElementById("articleTopic").value;
+    const articleUsername = document.getElementById("articleUsername").value;
+    const articleBody = document.getElementById("articleBody").value;
+
+    const postBody = {
+      title: articleTitle,
+      topic: articleTopic,
+      author: articleUsername,
+      body: articleBody,
+    }
+
+    postArticle(postBody)
+      .then(({ article }) => this.setState({ articles: [article, ...this.state.articles] }))
+      .catch(err => console.log(err))
   }
 
   // TODO h2 : <span> | Topic: </span>
@@ -67,6 +93,8 @@ class Articles extends Component {
       <div className="home-articles" articles={articles} topic={topic}>
         <h2>ARTICLES {topic && topic}</h2>
         <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
+        <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
+        <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} displayAddArticle={this.state.displayAddArticle} />
         <ul>
           {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)}
         </ul>

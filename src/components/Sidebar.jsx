@@ -20,7 +20,7 @@ class Sidebar extends Component {
       <div className="home-sidebar">
         <h2>TOPICS</h2>
         <ul>
-          {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.description}</Link></li>)}
+          {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.slug}</Link></li>)}
         </ul>
       </div>
     )
