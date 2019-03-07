@@ -1,6 +1,9 @@
 const BASE_URL = 'http://localhost:9090/api';
 
-// http://localhost:9090/api/articles?sort_by=votes&order=asc
+function getTopics() {
+  return fetch(`${BASE_URL}/topics`)
+    .then(response => response.json())
+}
 
 function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
@@ -21,21 +24,6 @@ function getArticleByID(id) {
     .then(response => response.json())
 }
 
-function getCommentsByArticleByID(id) {
-  return fetch(`${BASE_URL}/articles/${id}/comments`)
-    .then(response => response.json())
-}
-
-function getTopics() {
-  return fetch(`${BASE_URL}/topics`)
-    .then(response => response.json())
-}
-
-function getArticlesByTopic(topic = '') {
-  return fetch(`${BASE_URL}/articles/?topic=${topic}`)
-    .then(response => response.json())
-}
-
 function postArticle(body) {
   return fetch(`${BASE_URL}/articles`, {
     method: 'POST',
@@ -47,4 +35,25 @@ function postArticle(body) {
     .then(response => response.json())
 }
 
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle };
+// no body returned
+function deleteArticleByID(ID) {
+  console.log(ID)
+  return fetch(`${BASE_URL}/articles/${ID}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+}
+
+function getCommentsByArticleByID(id) {
+  return fetch(`${BASE_URL}/articles/${id}/comments`)
+    .then(response => response.json())
+}
+
+function getArticlesByTopic(topic = '') {
+  return fetch(`${BASE_URL}/articles/?topic=${topic}`)
+    .then(response => response.json())
+}
+
+export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID };

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import ArticleComments from './ArticleComments'
-import { getArticleByID } from '../api';
+import { getArticleByID, deleteArticleByID } from '../api';
 import ArticleEdit from './ArticleEdit';
 import ArticleDelete from './ArticleDelete';
-
-
+import { navigate } from '@reach/router';
+import CommentAddButton from './CommentAddButton';
 
 class Article extends Component {
 
@@ -24,9 +24,13 @@ class Article extends Component {
   }
 
   handleArticleDelete = (event) => {
-    console.log('handleArticleDelete')
+    const ID = this.state.singleArticle.article_id;
+    deleteArticleByID(ID)
+      .then(() => {
+        navigate('/');
+      })
+      .catch(err => console.log(err));
   }
-
 
   render() {
     // get articleID from props object
