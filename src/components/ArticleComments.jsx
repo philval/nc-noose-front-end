@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ArticleComment from './ArticleComment';
-import { getCommentsByArticleByID, postComment } from '../api';
+import { getCommentsByArticleByID, postComment, deleteCommentByID } from '../api';
 import CommentAddButton from './CommentAddButton';
 import CommentAddForm from './CommentAddForm';
 
@@ -42,6 +42,33 @@ class ArticleComments extends Component {
       .catch(err => console.log(err))
   }
 
+  handleCommentDelete = (event) => {
+    // console.log('handleCommentDelete clicked')
+    // console.log(event)
+    const ID = event.target.dataset.id
+
+    console.log(ID)
+    const newArr = this.state.comments.filter(comment => comment.comment_id !== ID)
+    console.log(newArr)
+
+    // HERE
+    deleteCommentByID(ID)
+    .then(() => {
+      this.setState({comments: newArr})
+    })
+    .catch(err => console.log(err))
+
+  }
+
+    // handleArticleDelete = (event) => {
+    //   const ID = this.state.singleArticle.article_id;
+    //   deleteArticleByID(ID)
+    //     .then(() => {
+    //       navigate('/');
+    //     })
+    //     .catch(err => console.log(err));
+    // }
+
   render() {
     const { comments, displayAddComment } = this.state;
     return (
@@ -51,7 +78,7 @@ class ArticleComments extends Component {
         {displayAddComment && <CommentAddForm handleCommentAddForm={this.handleCommentAddForm} />}
         <hr />
         <ul>
-          {comments.map(comment => <ArticleComment key={comment.comment_id} comment={comment} />)}
+          {comments.map(comment => <ArticleComment key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete}/>)}
 
         </ul>
       </div>

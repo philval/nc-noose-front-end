@@ -64,5 +64,15 @@ function postComment(article_id, body) {
     .then(response => response.json())
 }
 
+// DELETE /api/comments/:comment_id
+function deleteCommentByID (ID) {
+  return fetch(`${BASE_URL}/comments/${ID}`, {
+    method: 'DELETE',
+    headers: {
+      "Content-Type": "application/json",
+    }
+  })
+}
+
 // TODO tidy up
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment };
+export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment, deleteCommentByID };

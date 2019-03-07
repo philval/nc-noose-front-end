@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ArticleDelete = ({ handleArticleDelete }) => {
+const ArticleDeleteButton = ({ handleArticleDelete }) => {
   return (
     <button onClick={handleArticleDelete}>Delete Article</button>
   )
 }
 
-export default ArticleDelete
+export default ArticleDeleteButton

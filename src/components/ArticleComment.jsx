@@ -1,7 +1,7 @@
 import React from 'react';
+import CommentDeleteButton from './CommentDeleteButton';
 
-// destructure props
-const ArticleComment = ({ comment }) => {
+const ArticleComment = ({ comment, handleCommentDelete }) => {
 
   // TODO date function and unit test
   const created_at = new Date(comment.created_at).toString();
@@ -10,6 +10,8 @@ const ArticleComment = ({ comment }) => {
     <div className="article-comment">
       <li>
         <p>{comment.author} | {created_at}</p>
+        <p>ID : {comment.comment_id}</p>
+        <CommentDeleteButton handleCommentDelete={handleCommentDelete} id={comment.comment_id}/>
         <p>{comment.body}</p>
         <p>Votes : {comment.votes}</p>
       </li>
@@ -18,3 +20,5 @@ const ArticleComment = ({ comment }) => {
 }
 
 export default ArticleComment;
+
+// handleCommentDelete={handleCommentDelete}

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ArticleComments from './ArticleComments'
 import { getArticleByID, deleteArticleByID } from '../api';
 import ArticleEdit from './ArticleEdit';
-import ArticleDelete from './ArticleDelete';
+import ArticleDeleteButton from './ArticleDeleteButton';
 import { navigate } from '@reach/router';
 
 class Article extends Component {
@@ -41,8 +41,8 @@ class Article extends Component {
       <div className="single-article" singlearticle={singleArticle}>
         <h1>{singleArticle.title}</h1>
         <div>
-          <ArticleEdit className="button article-edit" handleArticleEdit={this.handleArticleEdit} />
-          <ArticleDelete className="button article-delete" handleArticleDelete={this.handleArticleDelete} />
+          {/* <ArticleEdit className="button article-edit" handleArticleEdit={this.handleArticleEdit} /> */}
+          <ArticleDeleteButton className="button article-delete" handleArticleDelete={this.handleArticleDelete} />
         </div>
         <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
         <p>{singleArticle.body}</p>
