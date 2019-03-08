@@ -1,10 +1,14 @@
-import React from 'react'
+import React, { Fragment } from 'react';
+import Sidebar from './Sidebar';
 
 const Login = () => {
   return (
-    <div>
-      <p>Login Page</p>
-    </div>
+    <Fragment>
+      <div class="page-content">
+        <p>Login Form...</p>
+      </div>
+      <Sidebar />
+    </Fragment>
   )
 }
 

@@ -21,8 +21,15 @@ h1 {
 }
 
 .home-header { grid-area: Header;}
-.home-articles { grid-area: Articles;}
+.home-articles, .page-content { grid-area: Articles;}
 .home-sidebar { grid-area: Sidebar;}
+
+.logo {
+  height:64px;
+  float: left;
+  margin-right: -90px;
+}
+
 
 .header {
   background-color: white;
@@ -30,10 +37,19 @@ h1 {
   margin-bottom: 1rem;
 }
 
+.home-header {
+  padding:0 1rem;
+}
+
 .home-container {
   background-color: white;
-  padding: 0 1rem;
   margin-bottom: 1rem;
+}
+
+/* hack.  react is missing home-contianer when filter by topic */
+.home-sidebar, .home-articles {
+  padding: 1rem;  
+  background-color: white;
 }
 
 .nav-link {
@@ -83,4 +99,9 @@ form {
 
 .hide {
   display: none;
+}
+
+.page-content {
+  background-color: white;
+  padding: 1rem;
 }

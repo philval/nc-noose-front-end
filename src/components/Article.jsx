@@ -41,8 +41,9 @@ class Article extends Component {
       <div className="single-article" singlearticle={singleArticle}>
         <h1>{singleArticle.title}</h1>
         <div>
-          {/* <ArticleEdit className="button article-edit" handleArticleEdit={this.handleArticleEdit} /> */}
+          <hr />
           <ArticleDeleteButton className="button article-delete" handleArticleDelete={this.handleArticleDelete} />
+          <hr />
         </div>
         <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
         <p>{singleArticle.body}</p>

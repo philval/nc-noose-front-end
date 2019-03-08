@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import { Router } from "@reach/router";
 import Header from './components/Header.jsx'
-import Sidebar from './components/Sidebar';
 import Homepage from './components/Homepage.jsx'
 import Account from './components/Account.jsx'
 import Login from './components/Login.jsx';
@@ -16,7 +15,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <Router>
+        <Router className="home-container">
           <Homepage path="/" />
           <Account path="/account" />
           <Login path="/login" />

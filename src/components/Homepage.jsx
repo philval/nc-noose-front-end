@@ -1,14 +1,12 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Articles from './Articles';
-import Comments from './Comments.jsx';
-import Sidebar from './Sidebar.jsx';
 
 const Homepage = () => {
   return (
-    <div className="home-container">
+    <Fragment>
       <p className="home-header">Welcome to the homepage</p>
       <Articles />
-    </div>
+    </Fragment>
   )
 }
 

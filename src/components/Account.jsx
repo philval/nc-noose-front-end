@@ -1,9 +1,14 @@
-import React from 'react'
-
+import React, { Fragment } from 'react'
+import Sidebar from './Sidebar'
 
 const Account = () => {
   return (
-    <p>Account page</p>
+    <Fragment>
+      <div class="page-content">
+        <p>Manage your account...</p>
+      </div>
+      <Sidebar />
+    </Fragment>
   )
 }
 

@@ -46,7 +46,7 @@ class ArticleComments extends Component {
     const ID = event.target.dataset.id
     console.log(ID)
 
-    const newArr = this.state.comments.filter(comment => comment.comment_id !== ID)
+    const newArr = this.state.comments.filter(comment => comment.comment_id !== +ID)
     console.log(newArr)
 
     deleteCommentByID(ID)
