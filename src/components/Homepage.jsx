@@ -6,11 +6,8 @@ import Sidebar from './Sidebar.jsx';
 const Homepage = () => {
   return (
     <div className="home-container">
-      <p>Welcome to the homepage</p>
+      <p className="home-header">Welcome to the homepage</p>
       <Articles />
-      <Comments />
-      <Sidebar />
-      {/* <Sidebar /> */}
     </div>
   )
 }

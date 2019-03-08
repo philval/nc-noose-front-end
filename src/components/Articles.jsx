@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { Link } from '@reach/router';
 import { getArticles, postArticle } from '../api';
 import ArticlesSortBy from './ArticlesSortBy';
 import ArticleAddButton from './ArticleAddButton';
 import ArticleAddForm from './ArticleAddForm';
+import Sidebar from './Sidebar';
 
 class Articles extends Component {
 
@@ -68,17 +69,20 @@ class Articles extends Component {
     const { articles, displayAddArticle } = this.state;
     const { topic } = this.props;
     return (
-      <div className="home-articles" articles={articles} topic={topic}>
-        <h2>ARTICLES {topic && topic}</h2>
-        <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
-        <hr />
-        <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
-        {displayAddArticle && <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} />}
-        <hr />
-        <ul>
-          {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)}
-        </ul>
-      </div>
+      <Fragment>
+        <Sidebar className="home-sidebar" />
+        <div className="home-articles" articles={articles} topic={topic}>
+          <h2>ARTICLES {topic && topic}</h2>
+          <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
+          <hr />
+          <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
+          {displayAddArticle && <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} />}
+          <hr />
+          <ul>
+            {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link></li>)}
+          </ul>
+        </div>
+      </Fragment>
     )
   }
 }

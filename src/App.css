@@ -1,8 +1,9 @@
 .App {
   text-align: left;
   height: 100vh;
-  background-color: #EEE;
-  padding: 1rem;  
+  background-color: #BA1F31;
+  padding: 1rem;
+  overflow-y: scroll;
 }
 
 h1 {
@@ -10,28 +11,62 @@ h1 {
   margin-bottom: 2rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 480px) {
   .home-container {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 4fr 1fr;
     grid-template-rows: 4em 1fr;
-    grid-template-areas: "Header Header Header" "Articles Comments Sidebar";
+    grid-template-areas: "Header Header" "Articles Sidebar";
   }
 }
 
-.header { grid-area: Header; }
-.home-articles { grid-area: Articles; }
-.home-comments { grid-area: Comments; }
-.home-sidebar { grid-area: Sidebar; }
+.home-header { grid-area: Header;}
+.home-articles { grid-area: Articles;}
+.home-sidebar { grid-area: Sidebar;}
 
 .header {
   background-color: white;
   padding:1rem;
+  margin-bottom: 1rem;
+}
+
+.home-container {
+  background-color: white;
+  padding: 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  margin-right: .5rem;
 }
 
 button {
   padding: .5rem;
   margin: 0 .5rem;
+}
+
+a, a:visited {
+  color: #BA1F31;
+  text-decoration: underline;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+hr {
+  border-top: solid #BA1F31 1px;  
+}
+
+form {
+  border: solid #BA1F31 1px;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+.single-article {
+  background-color: white;
+  padding: 1rem;
 }
 
 .single-article button {
