@@ -8,6 +8,7 @@ import ArticleVoteWidget from './ArticleVoteWidget';
 
 class Article extends Component {
 
+  // TODO singleArticle should be an object
   state = {
     singleArticle: [],
     articleVotes: 0,
@@ -37,8 +38,7 @@ class Article extends Component {
     // get articleID from props object
     const { singleArticle } = this.state;
     const article_id = this.state.singleArticle.article_id;
-    const created_at = new Date(singleArticle.created_at).toString();
-    // TODO DD MM YYYY
+    const created_at = new Date(singleArticle.created_at).toDateString();
 
     return (
       <Fragment>
@@ -51,7 +51,7 @@ class Article extends Component {
           </div>
           <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
           <p>{singleArticle.body}</p>
-          <p>Comments: {singleArticle.comment_count} | {<ArticleVoteWidget articleVotes={this.state.articleVotes} article_id={article_id} />}</p>
+          <p>Comments: {singleArticle.comment_count} | {<ArticleVoteWidget articleVotes={singleArticle.votes} article_id={article_id} />}</p>
           <ArticleComments articleID={this.props.articleID} />
         </div >
         <Sidebar />
@@ -62,5 +62,3 @@ class Article extends Component {
 }
 
 export default Article;
-
-// Votes: {singleArticle.votes}
