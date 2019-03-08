@@ -65,7 +65,7 @@ function postComment(article_id, body) {
 }
 
 // DELETE /api/comments/:comment_id
-function deleteCommentByID (ID) {
+function deleteCommentByID(ID) {
   return fetch(`${BASE_URL}/comments/${ID}`, {
     method: 'DELETE',
     headers: {
@@ -74,5 +74,17 @@ function deleteCommentByID (ID) {
   })
 }
 
+// pass article ID
+function updateArticleVotes(ID, body) {
+  return fetch(`${BASE_URL}/articles/${ID}`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+    .then(response => response.json())
+}
+
 // TODO tidy up
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment, deleteCommentByID };
+export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment, deleteCommentByID, updateArticleVotes };
