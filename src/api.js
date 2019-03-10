@@ -5,6 +5,17 @@ function getTopics() {
     .then(response => response.json())
 }
 
+function postTopic (body) {
+  return fetch(`${BASE_URL}/topics`, {
+    method: 'POST',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body)
+  })
+    .then(response => response.json())
+}
+
 function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
   if (topic) url += `topic=${topic}`;
@@ -104,6 +115,7 @@ export {
   getArticleByID,
   getCommentsByArticleByID,
   getTopics,
+  postTopic,
   getArticlesByTopic,
   postArticle,
   deleteArticleByID,

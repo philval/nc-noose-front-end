@@ -62,6 +62,9 @@ class Articles extends Component {
     postArticle(postBody)
       .then(({ article }) => this.setState({ articles: [article, ...this.state.articles] }))
       .catch(err => console.log(err))
+
+    const displayAddArticle = !this.state.displayAddArticle; // toggle
+    this.setState({ displayAddArticle: displayAddArticle })      
   }
 
   // TODO h2 : <span> | Topic: </span>

@@ -40,6 +40,9 @@ class ArticleComments extends Component {
     postComment(article_id, postBody)
       .then(({ comment }) => this.setState({ comments: [comment, ...this.state.comments] }))
       .catch(err => console.log(err))
+
+      const displayAddComment = !this.state.displayAddComment; // toggle
+      this.setState({ displayAddComment: displayAddComment })      
   }
 
   handleCommentDelete = (event) => {

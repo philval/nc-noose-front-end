@@ -5,7 +5,7 @@ const ArticlesSortBy = ({ handleSortOrder }) => {
   return (
 
     <div className="articles-sortby">
-      <p>Sort by :</p>
+      <h3>SORT BY</h3>
       <div>
         <input type="radio" id="created_at" name="articleSortBy" value="created_at" defaultChecked onClick={handleSortOrder} />
         <label htmlFor="created_at">Date</label>
