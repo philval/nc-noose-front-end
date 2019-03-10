@@ -1,8 +1,10 @@
 import React, { Fragment } from 'react';
 import Sidebar from './Sidebar';
 
-const Login = () => {
+const Login = (props) => {
+
   return (
+
     <Fragment>
       <div className="page-content">
         <p>Login Form...</p>
