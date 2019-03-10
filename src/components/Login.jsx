@@ -4,7 +4,7 @@ import Sidebar from './Sidebar';
 const Login = () => {
   return (
     <Fragment>
-      <div class="page-content">
+      <div className="page-content">
         <p>Login Form...</p>
       </div>
       <Sidebar />

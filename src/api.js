@@ -74,7 +74,6 @@ function deleteCommentByID(ID) {
   })
 }
 
-// pass article ID
 function updateArticleVotes(ID, body) {
   return fetch(`${BASE_URL}/articles/${ID}`, {
     method: 'PATCH',
@@ -86,5 +85,30 @@ function updateArticleVotes(ID, body) {
     .then(response => response.json())
 }
 
+function updateCommentVotes (ID, body) {
+  console.log('you voted !');
+  return fetch(`${BASE_URL}/comments/${ID}`, {
+    method: 'PATCH',
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  })
+    .then(response => response.json())
+}
+
 // TODO tidy up
-export { getArticles, getAllArticles, getArticleByID, getCommentsByArticleByID, getTopics, getArticlesByTopic, postArticle, deleteArticleByID, postComment, deleteCommentByID, updateArticleVotes };
+export {
+  getArticles,
+  getAllArticles,
+  getArticleByID,
+  getCommentsByArticleByID,
+  getTopics,
+  getArticlesByTopic,
+  postArticle,
+  deleteArticleByID,
+  postComment,
+  deleteCommentByID,
+  updateArticleVotes,
+  updateCommentVotes
+};

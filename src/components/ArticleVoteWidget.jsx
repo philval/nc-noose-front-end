@@ -16,7 +16,6 @@ class ArticleVoteWidget extends Component {
     this.setState({ articleWidgetVotes: this.state.articleWidgetVotes + inc_votes })
 
     updateArticleVotes(ID, body)
-      .then(({ article }) => console.log(article)) // HERE
       .catch(err => console.log(err))
   }
 

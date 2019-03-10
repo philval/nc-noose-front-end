@@ -1,5 +1,7 @@
 import React from 'react';
 import CommentDeleteButton from './CommentDeleteButton';
+import CommentVoteWidget from './CommentVoteWidget';
+
 
 const ArticleComment = ({ comment, handleCommentDelete }) => {
 
@@ -8,11 +10,11 @@ const ArticleComment = ({ comment, handleCommentDelete }) => {
   return (
     <div className="article-comment">
       <li>
-        <p>{comment.author} | {created_at}</p>
-        <p>ID : {comment.comment_id}</p>
-        <CommentDeleteButton handleCommentDelete={handleCommentDelete} id={comment.comment_id} />
+        <p>{created_at} | By : {comment.author}</p>
         <p>{comment.body}</p>
-        <p>Votes : {comment.votes}</p>
+        <CommentVoteWidget comment_id ={comment.comment_id} commentVotes={comment.votes} />
+        <CommentDeleteButton handleCommentDelete={handleCommentDelete} id={comment.comment_id} />
+        <hr/>
       </li>
     </div>
   )

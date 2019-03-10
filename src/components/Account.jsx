@@ -4,7 +4,7 @@ import Sidebar from './Sidebar'
 const Account = () => {
   return (
     <Fragment>
-      <div class="page-content">
+      <div className="page-content">
         <p>Manage your account...</p>
       </div>
       <Sidebar />
