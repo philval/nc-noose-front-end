@@ -1,11 +1,12 @@
-const BASE_URL = 'http://localhost:9090/api';
+// const BASE_URL = 'http://localhost:9090/api';
+const BASE_URL = 'https://nc-noose.herokuapp.com/api';
 
 function getTopics() {
   return fetch(`${BASE_URL}/topics`)
     .then(response => response.json())
 }
 
-function postTopic (body) {
+function postTopic(body) {
   return fetch(`${BASE_URL}/topics`, {
     method: 'POST',
     headers: {
@@ -96,7 +97,7 @@ function updateArticleVotes(ID, body) {
     .then(response => response.json())
 }
 
-function updateCommentVotes (ID, body) {
+function updateCommentVotes(ID, body) {
   console.log('you voted !');
   return fetch(`${BASE_URL}/comments/${ID}`, {
     method: 'PATCH',
