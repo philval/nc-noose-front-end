@@ -9,6 +9,7 @@ class Sidebar extends Component {
 
   state = {
     topics: [],
+    newTopic: {},
     displayAddTopic: false,
   }
 
@@ -23,17 +24,15 @@ class Sidebar extends Component {
     this.setState({ displayAddTopic: displayAddTopic });
   }
 
-  handleTopicAddForm = (event) => {
+  handleTopicAddFormChange = (event) => {
+    let newTopic = this.state.newTopic;
+    newTopic[event.target.name] = event.target.value;
+    this.setState({ newTopic })
+  }
+
+  handleTopicAddFormSubmit = (event) => {
     event.preventDefault();
-    const topicSlug = document.getElementById("topicSlug").value;
-    const topicDescription = document.getElementById("topicDescription").value;
-
-    const postBody = {
-      slug: topicSlug.toLowerCase(),
-      description: topicDescription,
-    }
-
-    console.log(postBody)
+    const postBody = this.state.newTopic;
 
     postTopic(postBody)
       .then(({ topic }) => this.setState({ topics: [topic, ...this.state.topics] }))
@@ -45,6 +44,7 @@ class Sidebar extends Component {
 
   render() {
     const { topics, displayAddTopic } = this.state;
+
     return (
       <div className="home-sidebar">
         <h2>TOPICS</h2>
@@ -52,7 +52,7 @@ class Sidebar extends Component {
           {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.slug}</Link></li>)}
         </ul>
         <TopicAddButton handleTopicAddButton={this.handleTopicAddButton} />
-        {displayAddTopic && <TopicAddForm handleTopicAddForm={this.handleTopicAddForm} />}
+        {displayAddTopic && <TopicAddForm handleTopicAddFormSubmit={this.handleTopicAddFormSubmit} handleTopicAddFormChange={this.handleTopicAddFormChange} />}
       </div>
     )
   }
