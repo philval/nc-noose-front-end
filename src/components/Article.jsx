@@ -8,22 +8,17 @@ import ArticleVoteWidget from './ArticleVoteWidget';
 
 class Article extends Component {
 
-  // TODO singleArticle should be an object
   state = {
-    singleArticle: [],
-    articleVotes: 0,
+    singleArticle: {},
   }
 
   componentDidMount = () => {
-    const id = this.props.articleID;
+    const id = this.props.articleID; // via @reach/router
     getArticleByID(id)
-      .then(({ article }) => this.setState({ singleArticle: article, articleVotes: article.votes }))
+      .then(({ article }) => this.setState({ singleArticle: article }))
       .catch(err => console.log(err))
   }
 
-  handleArticleEdit = (event) => {
-    console.log('handleArticleEdit')
-  }
 
   handleArticleDelete = (event) => {
     const ID = this.state.singleArticle.article_id;

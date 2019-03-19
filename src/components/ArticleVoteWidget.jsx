@@ -7,15 +7,13 @@ class ArticleVoteWidget extends Component {
     articleWidgetVotes: 0,
   }
 
-  handleArticleVote = (event) => {
+  handleArticleVote = (inc_votes) => {
     const ID = this.props.article_id;
-    const inc_votes = +event.target.dataset.vote;
-    const body = { inc_votes: inc_votes }
 
     // render before async API call
     this.setState({ articleWidgetVotes: this.state.articleWidgetVotes + inc_votes })
 
-    updateArticleVotes(ID, body)
+    updateArticleVotes(ID, { inc_votes: inc_votes })
       .catch(err => console.log(err))
   }
 
@@ -23,8 +21,8 @@ class ArticleVoteWidget extends Component {
     return (
       <Fragment>
         <span>Votes : {this.props.articleVotes + this.state.articleWidgetVotes}</span>
-        <button onClick={this.handleArticleVote} data-vote={1} className="vote-arrow">&uarr;</button>
-        <button onClick={this.handleArticleVote} data-vote={-1} className="vote-arrow">&darr;</button>
+        <button onClick={() => this.handleArticleVote(1)} disabled={this.state.articleWidgetVotes === 1} className="vote-arrow">&uarr;</button>
+        <button onClick={() => this.handleArticleVote(-1)} disabled={this.state.articleWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>
     )
   }
