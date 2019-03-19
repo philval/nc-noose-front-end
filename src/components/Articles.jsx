@@ -10,6 +10,7 @@ class Articles extends Component {
 
   state = {
     articles: [],
+    newArticle: { topic: "coding" },
     topic: '',
     sortBy: 'created_at',
     displayAddArticle: false,
@@ -45,26 +46,22 @@ class Articles extends Component {
     this.setState({ displayAddArticle: displayAddArticle })
   }
 
-  handleArticleAddForm = (event) => {
-    event.preventDefault()
-    const articleTitle = document.getElementById("articleTitle").value;
-    const articleTopic = document.getElementById("articleTopic").value;
-    const articleUsername = document.getElementById("articleUsername").value;
-    const articleBody = document.getElementById("articleBody").value;
+  handleArticleAddFormChange = (event) => {
+    let newArticle = this.state.newArticle;
+    newArticle[event.target.name] = event.target.value;
+    this.setState({ newArticle })
+  }
 
-    const postBody = {
-      title: articleTitle,
-      topic: articleTopic,
-      author: articleUsername,
-      body: articleBody,
-    }
+  handleArticleAddFormSubmit = (event) => {
+    event.preventDefault()
+    const postBody = this.state.newArticle;
 
     postArticle(postBody)
       .then(({ article }) => this.setState({ articles: [article, ...this.state.articles] }))
       .catch(err => console.log(err))
 
     const displayAddArticle = !this.state.displayAddArticle; // toggle
-    this.setState({ displayAddArticle: displayAddArticle })      
+    this.setState({ displayAddArticle: displayAddArticle })
   }
 
   // TODO h2 : <span> | Topic: </span>
@@ -79,7 +76,7 @@ class Articles extends Component {
           <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
           <hr />
           <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
-          {displayAddArticle && <ArticleAddForm handleArticleAddForm={this.handleArticleAddForm} />}
+          {displayAddArticle && <ArticleAddForm handleArticleAddFormSubmit={this.handleArticleAddFormSubmit} handleArticleAddFormChange={this.handleArticleAddFormChange} />}
           <hr />
           <ul>
             {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link> | {article.votes} votes</li>)}

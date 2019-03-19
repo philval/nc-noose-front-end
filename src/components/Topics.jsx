@@ -16,8 +16,9 @@ class Topics extends Component {
 
   render() {
     const { topics } = this.state;
+    const { handleArticleAddFormChange } = this.props;
     return (
-      <select id="articleTopic" className="w100">
+      <select name="topic" id="articleTopic" className="w100" onChange={handleArticleAddFormChange} required >
         {topics.map(topic => <option key={topic.slug} value={topic.slug}>{topic.slug}</option>)}
       </select>
     )

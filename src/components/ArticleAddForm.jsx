@@ -1,17 +1,17 @@
 import React from 'react'
 import Topics from './Topics'
 
-const ArticleAddForm = ({ handleArticleAddForm }) => {
+const ArticleAddForm = ({ handleArticleAddFormSubmit, handleArticleAddFormChange }) => {
   return (
-    <form id="articleAddForm" className="article-add-form" onSubmit={handleArticleAddForm} >
+    <form id="articleAddForm" className="article-add-form" onSubmit={handleArticleAddFormSubmit} >
       <label htmlFor="articleTitle">Title</label>
-      <input id="articleTitle" type="text" className="w100" required />
-      <label htmlFor="articleTopic">Topic</label>
-      <Topics />
+      <input name="title" id="articleTitle" type="text" className="w100" required onChange={handleArticleAddFormChange} />
+      <label htmlFor="articleTopic">Please select a topic</label>
+      <Topics handleArticleAddFormChange={handleArticleAddFormChange} />
       <label htmlFor="articleUsername">Username</label>
-      <input id="articleUsername" type="text" className="w100" required />
+      <input name="author" id="articleUsername" type="text" className="w100" required onChange={handleArticleAddFormChange} />
       <label htmlFor="articleBody">Content</label>
-      <textarea id="articleBody" type="textarea" rows="10" className="w100" required />
+      <textarea name="body" id="articleBody" type="textarea" rows="10" className="w100" required onChange={handleArticleAddFormChange} />
       <button type="submit">Submit</button>
     </form >
   )
