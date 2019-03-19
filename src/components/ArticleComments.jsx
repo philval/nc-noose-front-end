@@ -3,11 +3,13 @@ import ArticleComment from './ArticleComment';
 import { getCommentsByArticleByID, postComment, deleteCommentByID } from '../api';
 import CommentAddButton from './CommentAddButton';
 import CommentAddForm from './CommentAddForm';
+import { runInThisContext } from 'vm';
 
 class ArticleComments extends Component {
 
   state = {
     comments: [],
+    newComment: {},
     displayAddComment: false,
   }
 
@@ -25,24 +27,23 @@ class ArticleComments extends Component {
     this.setState({ displayAddComment: displayAddComment })
   }
 
-  handleCommentAddForm = (event) => {
+  handleCommentAddFormChange = (event) => {
+    let newComment = this.state.newComment;
+    newComment[event.target.name] = event.target.value;
+    this.setState({ newComment });
+  }
+
+  handleCommentAddFormSubmit = (event) => {
     event.preventDefault()
-    const commentUsername = document.getElementById("commentUsername").value;
-    const commentBody = document.getElementById("commentBody").value;
-
-    const postBody = {
-      author: commentUsername,
-      body: commentBody,
-    }
-
     const article_id = this.props.articleID;
+    const postBody = this.state.newComment;
 
     postComment(article_id, postBody)
       .then(({ comment }) => this.setState({ comments: [comment, ...this.state.comments] }))
       .catch(err => console.log(err))
 
-      const displayAddComment = !this.state.displayAddComment; // toggle
-      this.setState({ displayAddComment: displayAddComment })      
+    const displayAddComment = !this.state.displayAddComment; // toggle
+    this.setState({ displayAddComment: displayAddComment })
   }
 
   handleCommentDelete = (event) => {
@@ -65,7 +66,7 @@ class ArticleComments extends Component {
       <div className="article-comments" comments={comments}>
         <hr />
         <CommentAddButton handleCommentAddButton={this.handleCommentAddButton} />
-        {displayAddComment && <CommentAddForm handleCommentAddForm={this.handleCommentAddForm} />}
+        {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} />}
         <hr />
         <ul>
           {comments.map(comment => <ArticleComment key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete} />)}

@@ -461,6 +461,10 @@ button:active {
   margin-right: .5rem;
 }
 
+.articles-article {
+  margin-bottom: 1rem;
+}
+
 .single-article {
   background-color: white;
   padding: 1rem;

@@ -1,12 +1,12 @@
 import React from 'react'
 
-const CommentAddForm = ({ handleCommentAddForm }) => {
+const CommentAddForm = ({ handleCommentAddFormSubmit, handleCommentAddFormChange }) => {
   return (
-    <form id="CommentAddForm" className="comment-add-form" onSubmit={handleCommentAddForm} >
+    <form id="CommentAddForm" className="comment-add-form" onSubmit={handleCommentAddFormSubmit} >
       <label htmlFor="commentUsername">Username</label>
-      <input id="commentUsername" type="text" className="w100" required />
+      <input name="author" id="commentUsername" type="text" className="w100" required onChange={handleCommentAddFormChange} />
       <label htmlFor="commentBody">Your Comment</label>
-      <textarea id="commentBody" type="textarea" rows="10" className="w100" required />
+      <textarea name="body" id="commentBody" type="textarea" rows="10" className="w100" required onChange={handleCommentAddFormChange} />
       <button type="submit">Submit</button>
     </form >
   )

@@ -79,7 +79,11 @@ class Articles extends Component {
           {displayAddArticle && <ArticleAddForm handleArticleAddFormSubmit={this.handleArticleAddFormSubmit} handleArticleAddFormChange={this.handleArticleAddFormChange} />}
           <hr />
           <ul>
-            {articles.map(article => <li key={article.article_id}><Link to={`/articles/${article.article_id}`}>{article.title}</Link> | {article.votes} votes</li>)}
+            {articles.map(article =>
+              <li key={article.article_id} className="articles-article">
+                <div><Link to={`/articles/${article.article_id}`}>{article.title}</Link></div>
+                <div>By: {article.author} | Comments: {article.comment_count} | Votes: {article.votes}</div>
+              </li>)}
           </ul>
         </div>
       </Fragment>
