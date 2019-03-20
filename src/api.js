@@ -98,7 +98,6 @@ function updateArticleVotes(ID, body) {
 }
 
 function updateCommentVotes(ID, body) {
-  console.log('you voted !');
   return fetch(`${BASE_URL}/comments/${ID}`, {
     method: 'PATCH',
     headers: {

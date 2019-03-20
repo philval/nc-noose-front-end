@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-import ArticleComment from './ArticleComment';
-import { getCommentsByArticleByID, postComment, deleteCommentByID } from '../api';
-import CommentAddButton from './CommentAddButton';
-import CommentAddForm from './CommentAddForm';
-import { runInThisContext } from 'vm';
+import React, { Component } from 'react'
+import ArticleComment from './ArticleComment'
+import { getCommentsByArticleByID, postComment, deleteCommentByID } from '../api'
+import CommentAddForm from './CommentAddForm'
+import Button from './Button'
 
 class ArticleComments extends Component {
 
@@ -23,8 +22,7 @@ class ArticleComments extends Component {
   }
 
   handleCommentAddButton = (event) => {
-    const displayAddComment = !this.state.displayAddComment; // toggle
-    this.setState({ displayAddComment: displayAddComment })
+    this.setState((prevState) => ({ displayAddComment: !prevState.displayAddComment }))
   }
 
   handleCommentAddFormChange = (event) => {
@@ -42,16 +40,11 @@ class ArticleComments extends Component {
       .then(({ comment }) => this.setState({ comments: [comment, ...this.state.comments] }))
       .catch(err => console.log(err))
 
-    const displayAddComment = !this.state.displayAddComment; // toggle
-    this.setState({ displayAddComment: displayAddComment })
+    this.setState((prevState) => ({ displayAddComment: !prevState.displayAddComment }))
   }
 
-  handleCommentDelete = (event) => {
-    const ID = event.target.dataset.id
-    console.log(ID)
-
+  handleCommentDelete = (ID) => {
     const newArr = this.state.comments.filter(comment => comment.comment_id !== +ID)
-    console.log(newArr)
 
     deleteCommentByID(ID)
       .then(() => {
@@ -65,7 +58,8 @@ class ArticleComments extends Component {
     return (
       <div className="article-comments" comments={comments}>
         <hr />
-        <CommentAddButton handleCommentAddButton={this.handleCommentAddButton} />
+        <Button handler={this.handleCommentAddButton} label="Add New Comment" />
+
         {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} />}
         <hr />
         <ul>

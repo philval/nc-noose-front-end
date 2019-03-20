@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import { getTopics } from '../api';
-import { Link } from '@reach/router';
-import TopicAddButton from './TopicAddButton';
-import TopicAddForm from './TopicAddForm';
-import { postTopic } from '../api';
+import React, { Component } from 'react'
+import { getTopics } from '../api'
+import { Link } from '@reach/router'
+import TopicAddForm from './TopicAddForm'
+import { postTopic } from '../api'
+import Button from './Button'
 
 class Sidebar extends Component {
 
@@ -20,8 +20,7 @@ class Sidebar extends Component {
   }
 
   handleTopicAddButton = (event) => {
-    const displayAddTopic = !this.state.displayAddTopic; // toggle
-    this.setState({ displayAddTopic: displayAddTopic });
+    this.setState((prevState) => ({ displayAddTopic: !prevState.displayAddTopic }))
   }
 
   handleTopicAddFormChange = (event) => {
@@ -38,8 +37,7 @@ class Sidebar extends Component {
       .then(({ topic }) => this.setState({ topics: [topic, ...this.state.topics] }))
       .catch(err => console.log(err));
 
-    const displayAddTopic = !this.state.displayAddTopic; // toggle
-    this.setState({ displayAddTopic: displayAddTopic });
+    this.setState((prevState) => ({ displayAddTopic: !prevState.displayAddTopic }))
   }
 
   render() {
@@ -51,7 +49,7 @@ class Sidebar extends Component {
         <ul>
           {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.slug}</Link></li>)}
         </ul>
-        <TopicAddButton handleTopicAddButton={this.handleTopicAddButton} />
+        <Button className="w100 buttton-topic-add" handler={this.handleTopicAddButton} label="New Topic" />
         {displayAddTopic && <TopicAddForm handleTopicAddFormSubmit={this.handleTopicAddFormSubmit} handleTopicAddFormChange={this.handleTopicAddFormChange} />}
       </div>
     )

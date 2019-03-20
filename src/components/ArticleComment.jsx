@@ -1,6 +1,6 @@
-import React from 'react';
-import CommentDeleteButton from './CommentDeleteButton';
-import CommentVoteWidget from './CommentVoteWidget';
+import React from 'react'
+import CommentVoteWidget from './CommentVoteWidget'
+import Button from './Button'
 
 
 const ArticleComment = ({ comment, handleCommentDelete }) => {
@@ -12,9 +12,9 @@ const ArticleComment = ({ comment, handleCommentDelete }) => {
       <li>
         <p>{created_at} | By : {comment.author}</p>
         <p>{comment.body}</p>
-        <CommentVoteWidget comment_id ={comment.comment_id} commentVotes={comment.votes} />
-        <CommentDeleteButton handleCommentDelete={handleCommentDelete} id={comment.comment_id} />
-        <hr/>
+        <CommentVoteWidget comment_id={comment.comment_id} commentVotes={comment.votes} />
+        <Button handler={handleCommentDelete} label="Delete Comment" id={comment.comment_id} />
+        <hr />
       </li>
     </div>
   )

@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import ArticleComments from './ArticleComments';
-import { getArticleByID, deleteArticleByID } from '../api';
-import ArticleDeleteButton from './ArticleDeleteButton';
-import { navigate } from '@reach/router';
-import Sidebar from './Sidebar';
-import ArticleVoteWidget from './ArticleVoteWidget';
+import React, { Component, Fragment } from 'react'
+import ArticleComments from './ArticleComments'
+import { getArticleByID, deleteArticleByID } from '../api'
+import { navigate } from '@reach/router'
+import Sidebar from './Sidebar'
+import ArticleVoteWidget from './ArticleVoteWidget'
+import Button from './Button'
 
 class Article extends Component {
 
@@ -41,7 +41,7 @@ class Article extends Component {
           <h1>{singleArticle.title}</h1>
           <div>
             <hr />
-            <ArticleDeleteButton className="button article-delete" handleArticleDelete={this.handleArticleDelete} />
+            <Button className="button article-delete" handler={this.handleArticleDelete} label="Delete Article" />
             <hr />
           </div>
           <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>

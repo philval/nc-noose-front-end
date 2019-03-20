@@ -2,9 +2,9 @@ import React, { Component, Fragment } from 'react';
 import { Link } from '@reach/router';
 import { getArticles, postArticle } from '../api';
 import ArticlesSortBy from './ArticlesSortBy';
-import ArticleAddButton from './ArticleAddButton';
 import ArticleAddForm from './ArticleAddForm';
 import Sidebar from './Sidebar';
+import Button from './Button';
 
 class Articles extends Component {
 
@@ -16,23 +16,23 @@ class Articles extends Component {
     displayAddArticle: false,
   }
 
-  componentDidMount = () => {
-    const topic = this.props.topic;
-    const sortBy = this.state.sortBy;
-
+  getTheArticles = (topic, sortBy) => {
     getArticles(topic, sortBy)
       .then(({ articles }) => this.setState({ articles: articles }))
       .catch(err => console.log(err))
+  }
+
+  componentDidMount = () => {
+    const topic = this.props.topic;
+    const sortBy = this.state.sortBy;
+    this.getTheArticles(topic, sortBy)
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
     if (prevProps.topic !== this.props.topic || prevState.sortBy !== this.state.sortBy) {
-
-      getArticles(topic, sortBy)
-        .then(({ articles }) => this.setState({ articles: articles }))
-        .catch(err => console.log(err))
+      this.getTheArticles(topic, sortBy)
     }
   }
 
@@ -42,8 +42,7 @@ class Articles extends Component {
   }
 
   handleArticleAddButton = (event) => {
-    const displayAddArticle = !this.state.displayAddArticle; // toggle
-    this.setState({ displayAddArticle: displayAddArticle })
+    this.setState((prevState) => ({ displayAddArticle: !prevState.displayAddArticle }))
   }
 
   handleArticleAddFormChange = (event) => {
@@ -60,8 +59,7 @@ class Articles extends Component {
       .then(({ article }) => this.setState({ articles: [article, ...this.state.articles] }))
       .catch(err => console.log(err))
 
-    const displayAddArticle = !this.state.displayAddArticle; // toggle
-    this.setState({ displayAddArticle: displayAddArticle })
+    this.setState((prevState) => ({ displayAddArticle: !prevState.displayAddArticle }))
   }
 
   // TODO h2 : <span> | Topic: </span>
@@ -75,7 +73,8 @@ class Articles extends Component {
           <h2>ARTICLES {topic && topic}</h2>
           <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
           <hr />
-          <ArticleAddButton className="button article-add" handleArticleAddButton={this.handleArticleAddButton} />
+          <Button className="button article-add" handler={this.handleArticleAddButton} label="Post New Article" />
+
           {displayAddArticle && <ArticleAddForm handleArticleAddFormSubmit={this.handleArticleAddFormSubmit} handleArticleAddFormChange={this.handleArticleAddFormChange} />}
           <hr />
           <ul>
