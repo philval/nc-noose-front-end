@@ -511,3 +511,16 @@ button:active {
     border-left: solid #BA1F31 1px;
   }
 }
+
+footer {
+  color: white;
+  margin: 2rem;
+  font-size: .75rem;
+}
+
+footer a,
+footer a:visited,
+footer a:hover
+ {
+  color: white;
+}

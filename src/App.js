@@ -7,7 +7,7 @@ import Account from './components/Account.jsx'
 import Login from './components/Login.jsx'
 import Articles from './components/Articles'
 import Article from './components/Article'
-import NoMatch from './components/Nomatch'
+import NoMatch from './components/NoMatch'
 
 
 // header and sidebar appear on all pages, NOT part Router
@@ -24,6 +24,10 @@ class App extends Component {
           <Article path="/articles/:articleID" />
           <NoMatch default />
         </Router>
+        <footer>
+          &copy; NC Noose Enterprises {new Date().getFullYear()}&nbsp;&nbsp;|&nbsp;&nbsp;
+          Built by <a href="https://github.com/philval" target="_blank" rel="noopener noreferrer">philval</a>
+        </footer>
       </div >
     )
   }
