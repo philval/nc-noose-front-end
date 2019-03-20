@@ -4,7 +4,7 @@ import Articles from './Articles';
 const Homepage = () => {
   return (
     <Fragment>
-      <p className="home-header">Welcome to the homepage</p>
+      {/* <p className="home-header">Welcome to the homepage</p> */}
       <Articles />
     </Fragment>
   )

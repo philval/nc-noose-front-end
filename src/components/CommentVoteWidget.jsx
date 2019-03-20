@@ -7,15 +7,13 @@ class CommentVoteWidget extends Component {
     commentWidgetVotes: 0,
   }
 
-  handleCommentVote = (event) => {
+  handleCommentVote = (inc_votes) => {
     const ID = this.props.comment_id;
-    const inc_votes = +event.target.dataset.vote;
-    const body = { inc_votes: inc_votes }
 
     // render before async API call
     this.setState({ commentWidgetVotes: this.state.commentWidgetVotes + inc_votes })
 
-    updateCommentVotes(ID, body)
+    updateCommentVotes(ID, { inc_votes: inc_votes })
       .catch(err => console.log(err))
   }
 
@@ -23,8 +21,8 @@ class CommentVoteWidget extends Component {
     return (
       <Fragment>
         <span>Votes : {this.props.commentVotes + this.state.commentWidgetVotes}</span>
-        <button onClick={this.handleCommentVote} data-vote={1} className="vote-arrow">&uarr;</button>
-        <button onClick={this.handleCommentVote} data-vote={-1} className="vote-arrow">&darr;</button>
+        <button onClick={() => this.handleCommentVote(1)} disabled={this.state.commentWidgetVotes === 1} className="vote-arrow">&uarr;</button>
+        <button onClick={() => this.handleCommentVote(-1)} disabled={this.state.commentWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>
     )
   }

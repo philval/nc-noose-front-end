@@ -7,6 +7,7 @@ const Header = () => {
     <header className="header">
       <Logo />
       <h1>Northcoders Noose</h1>
+      <p>All the news, reviews, tips & tricks.</p>
       <Nav />
     </header>
   )
