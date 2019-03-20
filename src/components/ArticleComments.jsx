@@ -37,10 +37,12 @@ class ArticleComments extends Component {
     const postBody = this.state.newComment;
 
     postComment(article_id, postBody)
-      .then(({ comment }) => this.setState({ comments: [comment, ...this.state.comments] }))
+      .then(({ comment }) => this.setState((prevState) => ({
+        comments: [comment, ...this.state.comments],
+        displayAddComment: !prevState.displayAddComment
+      })
+      ))
       .catch(err => console.log(err))
-
-    this.setState((prevState) => ({ displayAddComment: !prevState.displayAddComment }))
   }
 
   handleCommentDelete = (ID) => {

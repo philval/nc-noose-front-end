@@ -18,9 +18,11 @@ class CommentVoteWidget extends Component {
   }
 
   render() {
+    const { commentVotes } = this.props;
+    const { commentWidgetVotes } = this.state;
     return (
       <Fragment>
-        <span>Votes : {this.props.commentVotes + this.state.commentWidgetVotes}</span>
+        <span>Votes : {commentVotes + commentWidgetVotes}</span>
         <button onClick={() => this.handleCommentVote(1)} disabled={this.state.commentWidgetVotes === 1} className="vote-arrow">&uarr;</button>
         <button onClick={() => this.handleCommentVote(-1)} disabled={this.state.commentWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>

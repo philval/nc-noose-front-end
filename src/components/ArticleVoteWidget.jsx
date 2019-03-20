@@ -18,9 +18,11 @@ class ArticleVoteWidget extends Component {
   }
 
   render() {
+    const { articleVotes } = this.props
+    const { articleWidgetVotes } = this.state
     return (
       <Fragment>
-        <span>Votes : {this.props.articleVotes + this.state.articleWidgetVotes}</span>
+        <span>Votes : {articleVotes + articleWidgetVotes}</span>
         <button onClick={() => this.handleArticleVote(1)} disabled={this.state.articleWidgetVotes === 1} className="vote-arrow">&uarr;</button>
         <button onClick={() => this.handleArticleVote(-1)} disabled={this.state.articleWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>

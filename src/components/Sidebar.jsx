@@ -34,10 +34,12 @@ class Sidebar extends Component {
     const postBody = this.state.newTopic;
 
     postTopic(postBody)
-      .then(({ topic }) => this.setState({ topics: [topic, ...this.state.topics] }))
+      .then(({ topic }) => this.setState((prevState) => ({
+        topics: [topic, ...this.state.topics],
+        displayAddTopic: !prevState.displayAddTopic
+      })
+      ))
       .catch(err => console.log(err));
-
-    this.setState((prevState) => ({ displayAddTopic: !prevState.displayAddTopic }))
   }
 
   render() {

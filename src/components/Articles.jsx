@@ -56,10 +56,12 @@ class Articles extends Component {
     const postBody = this.state.newArticle;
 
     postArticle(postBody)
-      .then(({ article }) => this.setState({ articles: [article, ...this.state.articles] }))
+      .then(({ article }) => this.setState((prevState) => ({
+        articles: [article, ...this.state.articles],
+        displayAddArticle: !prevState.displayAddArticle
+      })
+      ))
       .catch(err => console.log(err))
-
-    this.setState((prevState) => ({ displayAddArticle: !prevState.displayAddArticle }))
   }
 
   // TODO h2 : <span> | Topic: </span>
