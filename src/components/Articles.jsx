@@ -9,16 +9,20 @@ import Button from './Button';
 class Articles extends Component {
 
   state = {
+    isLoading: true,
     articles: [],
     newArticle: { topic: "coding" },
     topic: '',
     sortBy: 'created_at',
     displayAddArticle: false,
+    hasError: false, // TODO rename noArticles
   }
 
   getTheArticles = (topic, sortBy) => {
     getArticles(topic, sortBy)
-      .then(({ articles }) => this.setState({ articles: articles }))
+      .then(({ articles }) => articles.length === 0
+        ? this.setState({ hasError: true, articles: [] })
+        : this.setState({ isLoading: false, articles: articles, hasError: false }))
       .catch(err => console.log(err))
   }
 
@@ -65,8 +69,32 @@ class Articles extends Component {
   }
 
   render() {
-    const { articles, displayAddArticle } = this.state;
+
+    console.log(this.state.articles)
+
+    // TODO
+    // const { hasError } = this.state
+    // if (hasError) return (
+    //   <div className="home-articles">
+    //     <h1>Error</h1>
+    //     <p>Topic does not exist.</p>
+    //     <p>Return to the <Link to="/">homepage</Link></p>
+    //   </div>
+    // )
+
+    const { isLoading, articles, displayAddArticle, hasError } = this.state;
     const { topic } = this.props;
+
+    if (isLoading) return (
+      <div className="home-articles">
+        <div class="spinner">
+          <div class="bounce1"></div>
+          <div class="bounce2"></div>
+          <div class="bounce3"></div>
+        </div>
+      </div>
+    )
+
     return (
       <Fragment>
         <Sidebar className="home-sidebar" />
@@ -86,6 +114,7 @@ class Articles extends Component {
                 <div>By: {article.author} | Comments: {article.comment_count} | Votes: {article.votes}</div>
               </li>)}
           </ul>
+          {hasError && <p>No Articles found for this topic</p>}
         </div>
       </Fragment>
     )
