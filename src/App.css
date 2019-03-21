@@ -487,6 +487,7 @@ button:active {
 
 .hide {
   display: none;
+  color: red;
 }
 
 .page-content {
@@ -534,4 +535,8 @@ footer a:visited,
 footer a:hover
  {
   color: white;
+}
+
+.header-greeting {
+  text-align: right;
 }

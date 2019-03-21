@@ -19,27 +19,29 @@ class App extends Component {
   }
 
   handleUserLoginFormChange = (event) => {
-    console.log('you are typing')
     const user = event.target.value;
     this.setState({ user: user })
   }
 
   handleUserLoginFormSubmit = (event) => {
     event.preventDefault();
-    console.log('you submitted user form')
-    if (this.state.user === "grumpy19") {
+    if (this.state.user === "grumpy19") { // TODO hardcoded
       this.setState({ isLoggedIn: true })
     } else {
-      console.log('invalid user')
-      const invalidUserName = document.getElementById("invalidUserName")
+      const invalidUserName = document.getElementById("invalidUserName") // TODO DOMDOMDOM !!
       invalidUserName.classList.remove("hide");
     }
   }
 
+  handleUserLogout = (event) => {
+    this.setState({ isLoggedIn: false, user: "" })
+  }
+
   render() {
+    const { isLoggedIn, user } = this.state;
     return (
       <div className="App">
-        <Header />
+        <Header isLoggedIn={isLoggedIn} user={user} handleUserLogout={this.handleUserLogout} />
         <Auth isLoggedIn={this.state.isLoggedIn} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
           <Router className="home-container">
             <Homepage path="/" />
