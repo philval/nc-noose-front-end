@@ -456,7 +456,7 @@ button:active {
   margin-bottom: 1rem;
 }
 
-/* TODO hack.  react is missing home-contianer when filter by topic */
+/* TODO missing home-contianer when filter by topic */
 .home-sidebar, .home-articles {
   background-color: white;
   margin-bottom: 2rem;

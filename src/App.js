@@ -9,13 +9,24 @@ import Articles from './components/Articles'
 import Article from './components/Article'
 import NoMatch from './components/NoMatch'
 
-
 // header and sidebar appear on all pages, NOT part Router
 class App extends Component {
 
   state = {
     isLoggedIn: false,
-    user: ""
+    user: "",
+  }
+
+  componentDidMount = () => {
+    console.log(localStorage);
+
+    const isLoggedIn = localStorage.getItem("isLoggedIn")
+    if (isLoggedIn === null || "false") {
+      this.setState({ isLoggedIn: false })
+    }
+    if (isLoggedIn === "true") {
+      this.setState({ isLoggedIn: true })
+    }
   }
 
   handleUserLoginFormChange = (event) => {
@@ -27,6 +38,7 @@ class App extends Component {
     event.preventDefault();
     if (this.state.user === "grumpy19") { // TODO hardcoded
       this.setState({ isLoggedIn: true })
+      localStorage.setItem("isLoggedIn", "true")
     } else {
       const invalidUserName = document.getElementById("invalidUserName") // TODO DOMDOMDOM !!
       invalidUserName.classList.remove("hide");
@@ -35,6 +47,7 @@ class App extends Component {
 
   handleUserLogout = (event) => {
     this.setState({ isLoggedIn: false, user: "" })
+    localStorage.setItem("isLoggedIn", "false")
   }
 
   render() {
@@ -48,6 +61,7 @@ class App extends Component {
             <Account path="/account" />
             <Articles path="/articles/topic/:topic" />
             <Article path="/articles/:articleID" />
+            {/* <NoMatch default path="/not-found" /> */}
             <NoMatch default />
           </Router>
         </Auth >

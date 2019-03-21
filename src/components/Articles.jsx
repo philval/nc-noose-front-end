@@ -64,7 +64,6 @@ class Articles extends Component {
       .catch(err => console.log(err))
   }
 
-  // TODO h2 : <span> | Topic: </span>
   render() {
     const { articles, displayAddArticle } = this.state;
     const { topic } = this.props;
@@ -72,7 +71,8 @@ class Articles extends Component {
       <Fragment>
         <Sidebar className="home-sidebar" />
         <div className="home-articles" articles={articles} topic={topic}>
-          <h2>ARTICLES {topic && topic}</h2>
+          <h2>ARTICLES</h2>
+          {topic && <p>Topic: {topic}</p>}
           <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
           <hr />
           <Button className="button article-add" handler={this.handleArticleAddButton} label="Post New Article" />
