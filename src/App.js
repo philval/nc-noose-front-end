@@ -15,21 +15,32 @@ class App extends Component {
 
   state = {
     isLoggedIn: false,
-    user: true
+    user: ""
   }
 
+  handleUserLoginFormChange = (event) => {
+    console.log('you are typing')
+    const user = event.target.value;
+    this.setState({ user: user })
+  }
 
-  handleUserFormSubmit = (event) => {
+  handleUserLoginFormSubmit = (event) => {
     event.preventDefault();
     console.log('you submitted user form')
-    // this.setState({ user: user })
+    if (this.state.user === "grumpy19") {
+      this.setState({ isLoggedIn: true })
+    } else {
+      console.log('invalid user')
+      const invalidUserName = document.getElementById("invalidUserName")
+      invalidUserName.classList.remove("hide");
+    }
   }
 
   render() {
     return (
       <div className="App">
         <Header />
-        <Auth user={this.state.user} handleUserFormSubmit={this.handleUserFormSubmit} >
+        <Auth isLoggedIn={this.state.isLoggedIn} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
           <Router className="home-container">
             <Homepage path="/" />
             <Account path="/account" />
