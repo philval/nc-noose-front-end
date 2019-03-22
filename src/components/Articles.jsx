@@ -18,7 +18,8 @@ class Articles extends Component {
     displayAddArticle: false,
   }
 
-  getTheArticles = (topic, sortBy) => {
+
+  getTheArticles = (topic, sortBy) => { // TODO rename to fetchArticles
     getArticles(topic, sortBy)
       .then(({ articles }) => articles.length === 0
         ? this.setState({ hasError: true, articles: [] })
@@ -85,8 +86,8 @@ class Articles extends Component {
 
     return (
       <Fragment>
-        <Sidebar className="home-sidebar" />
-        <div className="home-articles" articles={articles} topic={topic}>
+        <Sidebar />
+        <main className="home-articles" articles={articles} topic={topic}>
           <h2>ARTICLES</h2>
           {topic && <p>Topic: {topic}</p>}
           <ArticlesSortBy handleSortOrder={this.handleSortOrder} />
@@ -98,12 +99,13 @@ class Articles extends Component {
           <ul>
             {articles.map(article =>
               <li key={article.article_id} className="articles-article">
-                <div><Link to={`/articles/${article.article_id}`}>{article.title}</Link></div>
-                <div>By: {article.author} | Comments: {article.comment_count} | Votes: {article.votes}</div>
+                <h2 className=""><Link to={`/articles/${article.article_id}`}>{article.title}</Link></h2>
+                <div className="article-meta">{new Date(article.created_at).toDateString()} | By: {article.author}</div>
+                <div className="article-meta">Comments: {article.comment_count} | Votes: {article.votes}</div>
               </li>)}
           </ul>
           {hasError && <p>No Articles found for this topic</p>}
-        </div>
+        </main>
       </Fragment>
     )
   }

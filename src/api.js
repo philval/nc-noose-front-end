@@ -17,6 +17,7 @@ function postTopic(body) {
     .then(response => response.json())
 }
 
+// HERE one is superflous...
 function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
   if (topic) url += `topic=${topic}`;

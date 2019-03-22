@@ -351,7 +351,14 @@ template {
 /* =end normalize */
 /* ============================================ */
 
+body {
+  background-color: #202728;
+}
+
 .App {
+  max-width:800px;
+  margin: 2rem auto;
+  border-radius: 5px;
   text-align: left;
   height: 100vh;
   background-color: #BA1F31;
@@ -360,8 +367,15 @@ template {
 }
 
 h1 {
+  font-size:2rem;
   margin: 0;
-  margin-bottom: 2rem;
+  margin-bottom: .5rem;
+}
+
+h2 {
+  font-size:1.25rem;
+  margin: 0;
+  margin-bottom: 1rem;
 }
 
 p {
@@ -397,6 +411,7 @@ input {
   padding: .5rem;
 }
 
+/* mobiles */
 select, textarea {
   border: solid 1px #888;
 }
@@ -449,7 +464,8 @@ button:active {
   background-color: white;
   padding:1rem;
   margin-bottom: 1rem;
-  border-bottom: double 5px #BA1F31;  
+  border-bottom: double 5px #BA1F31;
+  border-radius: 5px;  
 }
 
 .home-header {
@@ -459,6 +475,7 @@ button:active {
 .home-container {
   background-color: white;
   margin-bottom: 1rem;
+  border-radius: 5px;  
 }
 
 /* TODO missing home-contianer when filter by topic */
@@ -484,6 +501,11 @@ button:active {
 
 .single-article button {
   display: inline;
+}
+
+.article-meta {
+  font-size: .875rem;
+  margin-bottom: .25rem;
 }
 
 .w100 {

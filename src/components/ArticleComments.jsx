@@ -48,6 +48,9 @@ class ArticleComments extends Component {
   handleCommentDelete = (ID) => {
     const newArr = this.state.comments.filter(comment => comment.comment_id !== +ID)
 
+    // optimistic R
+    this.props.handleCommentChange(-1)
+
     deleteCommentByID(ID)
       .then(() => {
         this.setState({ comments: newArr })
@@ -57,13 +60,13 @@ class ArticleComments extends Component {
 
   render() {
     const { comments, displayAddComment } = this.state;
-    const user = this.props.user
+    const { user, handleCommentChange } = this.props
     return (
       <div className="article-comments" comments={comments}>
         <hr />
         <Button handler={this.handleCommentAddButton} label="Add New Comment" />
 
-        {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} />}
+        {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} handleCommentChange={handleCommentChange} />}
         <hr />
         <ul>
           {comments.map(comment => <ArticleComment user={user} key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete} />)}

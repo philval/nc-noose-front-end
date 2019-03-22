@@ -10,13 +10,14 @@ class Article extends Component {
 
   state = {
     singleArticle: {},
+    commentCount: 0,
     hasError: false,
   }
 
   componentDidMount = () => {
     const id = this.props.articleID; // via @reach/router
     getArticleByID(id)
-      .then(({ article }) => article === undefined ? this.setState({ hasError: true }) : this.setState({ singleArticle: article }))
+      .then(({ article }) => !article ? this.setState({ hasError: true }) : this.setState({ singleArticle: article, commentCount: article.comment_count }))
       .catch(err => console.log(err))
   }
 
@@ -27,6 +28,12 @@ class Article extends Component {
         navigate('/');
       })
       .catch(err => console.log(err));
+  }
+
+  // optimistic rendering commentCount
+  handleCommentChange = (countChange) => {
+    console.log('you clicked handleCommentChange')
+    this.setState({ commentCount: +this.state.commentCount + countChange }) // TODO prevState
   }
 
   render() {
@@ -41,24 +48,24 @@ class Article extends Component {
 
     // get articleID from props object
     const user = this.props.user;
-    const { singleArticle } = this.state;
+    const { singleArticle, commentCount } = this.state;
     const article_id = singleArticle.article_id;
     const created_at = new Date(singleArticle.created_at).toDateString();
 
     return (
       <Fragment>
-        <div className="single-article" singlearticle={singleArticle}>
-          <h1>{singleArticle.title}</h1>
+        <article className="single-article" singlearticle={singleArticle}>
+          <h2>{singleArticle.title}</h2>
           <div>
             <hr />
             {singleArticle.author === user && <Button className="button article-delete" handler={this.handleArticleDelete} label="Delete Article" />}
             <hr />
           </div>
-          <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
+          <p className="article-meta">{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
           <p>{singleArticle.body}</p>
-          <p>Comments: {singleArticle.comment_count} | {<ArticleVoteWidget articleVotes={singleArticle.votes} article_id={article_id} />}</p>
-          <ArticleComments articleID={this.props.articleID} user={user} />
-        </div >
+          <p>Comments: {commentCount} | {<ArticleVoteWidget articleVotes={singleArticle.votes} article_id={article_id} />}</p>
+          <ArticleComments articleID={this.props.articleID} user={user} handleCommentChange={this.handleCommentChange} />
+        </article >
         <Sidebar />
       </Fragment>
 

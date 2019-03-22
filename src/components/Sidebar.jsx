@@ -46,14 +46,14 @@ class Sidebar extends Component {
     const { topics, displayAddTopic } = this.state;
 
     return (
-      <div className="home-sidebar">
+      <aside className="home-sidebar">
         <h2>TOPICS</h2>
         <ul>
           {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.slug}</Link></li>)}
         </ul>
         <Button className="w100 buttton-topic-add" handler={this.handleTopicAddButton} label="New Topic" />
         {displayAddTopic && <TopicAddForm handleTopicAddFormSubmit={this.handleTopicAddFormSubmit} handleTopicAddFormChange={this.handleTopicAddFormChange} />}
-      </div>
+      </aside>
     )
   }
 
