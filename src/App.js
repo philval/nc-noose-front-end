@@ -15,21 +15,25 @@ class App extends Component {
   state = {
     isLoggedIn: false,
     user: "",
+    isValidUser: true,
   }
+
 
   componentDidMount = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn")
+    const user = localStorage.getItem("user")
+
     if (isLoggedIn === null || "false") {
-      this.setState({ isLoggedIn: false })
+      this.setState({ isLoggedIn: false, user: "" })
     }
     if (isLoggedIn === "true") {
-      this.setState({ isLoggedIn: true })
+      this.setState({ isLoggedIn: true, user: user })
     }
   }
 
   handleUserLoginFormChange = (event) => {
     const user = event.target.value;
-    this.setState({ user: user })
+    this.setState({ user: user, isValidUser: true })
   }
 
   handleUserLoginFormSubmit = (event) => {
@@ -37,23 +41,26 @@ class App extends Component {
     if (this.state.user === "grumpy19") { // TODO hardcoded
       this.setState({ isLoggedIn: true })
       localStorage.setItem("isLoggedIn", "true")
+      localStorage.setItem("user", "grumpy19") // hard refresh
     } else {
-      const invalidUserName = document.getElementById("invalidUserName") // TODO DOMDOMDOM !!
-      invalidUserName.classList.remove("hide");
+      // const invalidUserName = document.getElementById("invalidUserName") // TODO DOMDOMDOM !!
+      // invalidUserName.classList.remove("hide");
+      this.setState({ isValidUser: false })
     }
   }
 
   handleUserLogout = (event) => {
     this.setState({ isLoggedIn: false, user: "" })
     localStorage.setItem("isLoggedIn", "false")
+    localStorage.setItem("user", "")
   }
 
   render() {
-    const { isLoggedIn, user } = this.state;
+    const { isLoggedIn, user, isValidUser } = this.state;
     return (
       <div className="App">
         <Header isLoggedIn={isLoggedIn} user={user} handleUserLogout={this.handleUserLogout} />
-        <Auth isLoggedIn={this.state.isLoggedIn} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
+        <Auth isLoggedIn={isLoggedIn} isValidUser={isValidUser} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
           <Router className="home-container">
             <Homepage path="/" />
             <Account path="/account" />
