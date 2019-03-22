@@ -51,7 +51,7 @@ class Article extends Component {
           <h1>{singleArticle.title}</h1>
           <div>
             <hr />
-            <Button className="button article-delete" handler={this.handleArticleDelete} label="Delete Article" />
+            {singleArticle.author === user && <Button className="button article-delete" handler={this.handleArticleDelete} label="Delete Article" />}
             <hr />
           </div>
           <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>

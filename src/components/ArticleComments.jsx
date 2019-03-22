@@ -57,6 +57,7 @@ class ArticleComments extends Component {
 
   render() {
     const { comments, displayAddComment } = this.state;
+    const user = this.props.user
     return (
       <div className="article-comments" comments={comments}>
         <hr />
@@ -65,7 +66,7 @@ class ArticleComments extends Component {
         {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} />}
         <hr />
         <ul>
-          {comments.map(comment => <ArticleComment key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete} />)}
+          {comments.map(comment => <ArticleComment user={user} key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete} />)}
 
         </ul>
       </div>
