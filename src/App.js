@@ -3,13 +3,14 @@ import './App.css'
 import Auth from './components/Auth'
 import { Router } from "@reach/router"
 import Header from './components/Header.jsx'
-import Homepage from './components/Homepage.jsx'
 import Account from './components/Account.jsx'
 import Articles from './components/Articles'
 import Article from './components/Article'
 import NoMatch from './components/NoMatch'
+import Footer from './components/Footer'
 
-// header and sidebar appear on all pages, NOT part Router
+// Header, Sidebar, Footer appear on all pages, NOT part Router.
+// Auth not part of Router
 class App extends Component {
 
   state = {
@@ -17,7 +18,6 @@ class App extends Component {
     user: "",
     isValidUser: true,
   }
-
 
   componentDidMount = () => {
     const isLoggedIn = localStorage.getItem("isLoggedIn")
@@ -43,8 +43,6 @@ class App extends Component {
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("user", "grumpy19") // hard refresh
     } else {
-      // const invalidUserName = document.getElementById("invalidUserName") // TODO DOMDOMDOM !!
-      // invalidUserName.classList.remove("hide");
       this.setState({ isValidUser: false })
     }
   }
@@ -62,18 +60,14 @@ class App extends Component {
         <Header isLoggedIn={isLoggedIn} user={user} handleUserLogout={this.handleUserLogout} />
         <Auth isLoggedIn={isLoggedIn} isValidUser={isValidUser} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
           <Router className="home-container">
-            <Homepage path="/" />
-            <Account path="/account" />
-            <Articles path="/articles/topic/:topic" />
-            <Article path="/articles/:articleID" />
-            {/* <NoMatch default path="/not-found" /> */}
+            <Articles path="/" user={user} />
+            <Account path="/account" user={user} />
+            <Articles path="/articles/topic/:topic" user={user} />
+            <Article path="/articles/:articleID" user={user} />
             <NoMatch default />
           </Router>
         </Auth >
-        <footer>
-          &copy; NC Noose Enterprises {new Date().getFullYear()}&nbsp;&nbsp;|&nbsp;&nbsp;
-          Built by <a href="https://github.com/philval" target="_blank" rel="noopener noreferrer">philval</a>
-        </footer>
+        <Footer />
       </div >
     )
   }

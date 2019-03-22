@@ -40,6 +40,7 @@ class Article extends Component {
     )
 
     // get articleID from props object
+    const user = this.props.user;
     const { singleArticle } = this.state;
     const article_id = singleArticle.article_id;
     const created_at = new Date(singleArticle.created_at).toDateString();
@@ -56,7 +57,7 @@ class Article extends Component {
           <p>{created_at} | By: {singleArticle.author} | Topic: {singleArticle.topic}</p>
           <p>{singleArticle.body}</p>
           <p>Comments: {singleArticle.comment_count} | {<ArticleVoteWidget articleVotes={singleArticle.votes} article_id={article_id} />}</p>
-          <ArticleComments articleID={this.props.articleID} />
+          <ArticleComments articleID={this.props.articleID} user={user} />
         </div >
         <Sidebar />
       </Fragment>

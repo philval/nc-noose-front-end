@@ -8,7 +8,7 @@ class ArticleComments extends Component {
 
   state = {
     comments: [],
-    newComment: {},
+    newComment: { author: this.props.user },
     displayAddComment: false,
   }
 

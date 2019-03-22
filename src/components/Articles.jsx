@@ -1,10 +1,10 @@
-import React, { Component, Fragment } from 'react';
-import { Link } from '@reach/router';
-import { getArticles, postArticle } from '../api';
-import ArticlesSortBy from './ArticlesSortBy';
-import ArticleAddForm from './ArticleAddForm';
-import Sidebar from './Sidebar';
-import Button from './Button';
+import React, { Component, Fragment } from 'react'
+import { Link } from '@reach/router'
+import { getArticles, postArticle } from '../api'
+import ArticlesSortBy from './ArticlesSortBy'
+import ArticleAddForm from './ArticleAddForm'
+import Sidebar from './Sidebar'
+import Button from './Button'
 
 class Articles extends Component {
 
@@ -12,7 +12,7 @@ class Articles extends Component {
     isLoading: true,
     hasError: false, // TODO rename noArticles    
     articles: [],
-    newArticle: { topic: "coding" },
+    newArticle: { topic: "coding", author: this.props.user },
     topic: '',
     sortBy: 'created_at',
     displayAddArticle: false,
@@ -69,16 +69,6 @@ class Articles extends Component {
   }
 
   render() {
-
-    // TODO
-    // const { hasError } = this.state
-    // if (hasError) return (
-    //   <div className="home-articles">
-    //     <h1>Error</h1>
-    //     <p>Topic does not exist.</p>
-    //     <p>Return to the <Link to="/">homepage</Link></p>
-    //   </div>
-    // )
 
     const { isLoading, articles, displayAddArticle, hasError } = this.state;
     const { topic } = this.props;
