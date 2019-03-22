@@ -397,6 +397,10 @@ input {
   padding: .5rem;
 }
 
+select, textarea {
+  border: solid 1px #888;
+}
+
 button {
   background-color: #BA1F31;
   color: white;
@@ -445,6 +449,7 @@ button:active {
   background-color: white;
   padding:1rem;
   margin-bottom: 1rem;
+  border-bottom: double 5px #BA1F31;  
 }
 
 .home-header {
@@ -460,6 +465,7 @@ button:active {
 .home-sidebar, .home-articles {
   background-color: white;
   margin-bottom: 2rem;
+  border-bottom: double 5px #BA1F31;
   padding: 1rem;  
 }
 
@@ -473,7 +479,7 @@ button:active {
 
 .single-article {
   background-color: white;
-  padding: 1rem;
+  padding: 1rem;  
 }
 
 .single-article button {

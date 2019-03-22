@@ -3,7 +3,6 @@ import './App.css'
 import Auth from './components/Auth'
 import { Router } from "@reach/router"
 import Header from './components/Header.jsx'
-import Account from './components/Account.jsx'
 import Articles from './components/Articles'
 import Article from './components/Article'
 import NoMatch from './components/NoMatch'
@@ -61,7 +60,6 @@ class App extends Component {
         <Auth isLoggedIn={isLoggedIn} isValidUser={isValidUser} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
           <Router className="home-container">
             <Articles path="/" user={user} />
-            <Account path="/account" user={user} />
             <Articles path="/articles/topic/:topic" user={user} />
             <Article path="/articles/:articleID" user={user} />
             <NoMatch default />
