@@ -16,7 +16,7 @@ class ArticleAddForm extends Component {
   handleArticleAddFormSubmit = (event) => {
     event.preventDefault()
     const postBody = this.state.newArticle;
-    this.props.addArticle(postBody); // passed down from Articles
+    this.props.addArticle(postBody); // api call
   }
 
   render() {

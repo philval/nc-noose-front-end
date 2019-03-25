@@ -9,7 +9,6 @@ class Sidebar extends Component {
 
   state = {
     topics: [],
-    newTopic: {},
     displayAddTopic: false,
   }
 
@@ -23,16 +22,8 @@ class Sidebar extends Component {
     this.setState((prevState) => ({ displayAddTopic: !prevState.displayAddTopic }))
   }
 
-  handleTopicAddFormChange = (event) => {
-    let newTopic = this.state.newTopic;
-    newTopic[event.target.name] = event.target.value;
-    this.setState({ newTopic })
-  }
 
-  handleTopicAddFormSubmit = (event) => {
-    event.preventDefault();
-    const postBody = this.state.newTopic;
-
+  addTopic = (postBody) => {
     postTopic(postBody)
       .then(({ topic }) => this.setState((prevState) => ({
         topics: [topic, ...this.state.topics],
@@ -52,7 +43,7 @@ class Sidebar extends Component {
           {topics.map(topic => <li key={topic.slug}><Link to={`/articles/topic/${topic.slug}`}>{topic.slug}</Link></li>)}
         </ul>
         <Button className="w100 buttton-topic-add" handler={this.handleTopicAddButton} label="New Topic" />
-        {displayAddTopic && <TopicAddForm handleTopicAddFormSubmit={this.handleTopicAddFormSubmit} handleTopicAddFormChange={this.handleTopicAddFormChange} />}
+        {displayAddTopic && <TopicAddForm addTopic={this.addTopic} />}
       </aside>
     )
   }

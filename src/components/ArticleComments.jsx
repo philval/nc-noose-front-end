@@ -8,7 +8,6 @@ class ArticleComments extends Component {
 
   state = {
     comments: [],
-    newComment: { author: this.props.user },
     displayAddComment: false,
   }
 
@@ -24,19 +23,11 @@ class ArticleComments extends Component {
     this.setState((prevState) => ({ displayAddComment: !prevState.displayAddComment }))
   }
 
-  handleCommentAddFormChange = (event) => {
-    let newComment = this.state.newComment;
-    newComment[event.target.name] = event.target.value;
-    this.setState({ newComment });
-  }
-
-  handleCommentAddFormSubmit = (event) => {
-    event.preventDefault()
-    const article_id = this.props.articleID;
-    const postBody = this.state.newComment;
-
+  addComment(article_id, postBody) {
+    // const article_id = this.props.articleID;
+    // console.log(article_id)
     postComment(article_id, postBody)
-      .then(({ comment }) => this.setState((prevState) => ({
+      .then(({ comment }) => console.log(comment) || this.setState((prevState) => ({
         comments: [comment, ...this.state.comments],
         displayAddComment: !prevState.displayAddComment
       })
@@ -57,13 +48,13 @@ class ArticleComments extends Component {
 
   render() {
     const { comments, displayAddComment } = this.state;
-    const { user, handleCommentChange } = this.props
+    const { articleID, user, handleCommentChange } = this.props
     return (
       <div className="article-comments" comments={comments}>
         <hr />
         <Button handler={this.handleCommentAddButton} label="Add New Comment" />
 
-        {displayAddComment && <CommentAddForm handleCommentAddFormSubmit={this.handleCommentAddFormSubmit} handleCommentAddFormChange={this.handleCommentAddFormChange} handleCommentChange={handleCommentChange} />}
+        {displayAddComment && <CommentAddForm user={user} articleID={articleID} addComment={this.addComment} handleCommentChange={handleCommentChange} />}
         <hr />
         <ul>
           {comments.map(comment => <ArticleComment user={user} key={comment.comment_id} comment={comment} handleCommentDelete={this.handleCommentDelete} />)}

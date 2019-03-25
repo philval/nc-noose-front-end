@@ -32,7 +32,6 @@ class Article extends Component {
 
   // optimistic rendering commentCount
   handleCommentChange = (countChange) => {
-    console.log('you clicked handleCommentChange')
     this.setState({ commentCount: +this.state.commentCount + countChange }) // TODO prevState
   }
 
