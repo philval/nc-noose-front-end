@@ -12,7 +12,6 @@ class Articles extends Component {
     isLoading: true,
     hasError: false,
     articles: [],
-    newArticle: { topic: "coding", author: this.props.user },
     topic: '',
     sortBy: 'created_at',
     displayAddArticle: false,
@@ -49,16 +48,7 @@ class Articles extends Component {
     this.setState((prevState) => ({ displayAddArticle: !prevState.displayAddArticle }))
   }
 
-  handleArticleAddFormChange = (event) => {
-    let newArticle = this.state.newArticle;
-    newArticle[event.target.name] = event.target.value;
-    this.setState({ newArticle })
-  }
-
-  handleArticleAddFormSubmit = (event) => {
-    event.preventDefault()
-    const postBody = this.state.newArticle;
-
+  addArticle = (postBody) => {
     postArticle(postBody)
       .then(({ article }) => this.setState((prevState) => ({
         articles: [article, ...this.state.articles],
@@ -70,8 +60,8 @@ class Articles extends Component {
 
   render() {
 
-    const { isLoading, articles, displayAddArticle, hasError } = this.state;
-    const { topic } = this.props;
+    const { isLoading, hasError, articles, displayAddArticle } = this.state;
+    const { user, topic } = this.props;
 
     if (isLoading) return (
       <div className="home-articles">
@@ -93,7 +83,7 @@ class Articles extends Component {
           <hr />
           <Button className="button article-add" handler={this.handleArticleAddButton} label="Post New Article" />
 
-          {displayAddArticle && <ArticleAddForm handleArticleAddFormSubmit={this.handleArticleAddFormSubmit} handleArticleAddFormChange={this.handleArticleAddFormChange} />}
+          {displayAddArticle && <ArticleAddForm addArticle={this.addArticle} user={user} />}
           <hr />
           <ul>
             {articles.map(article =>
