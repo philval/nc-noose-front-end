@@ -12,7 +12,6 @@ class ArticleComments extends Component {
     displayAddComment: false,
   }
 
-  // GET /api/articles/:article_id/comments
   // articleID from props object via @reach/router
   componentDidMount = () => {
     const id = this.props.articleID;
@@ -47,8 +46,6 @@ class ArticleComments extends Component {
 
   handleCommentDelete = (ID) => {
     const newArr = this.state.comments.filter(comment => comment.comment_id !== +ID)
-
-    // optimistic R
     this.props.handleCommentChange(-1)
 
     deleteCommentByID(ID)

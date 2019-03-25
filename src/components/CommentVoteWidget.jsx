@@ -10,7 +10,6 @@ class CommentVoteWidget extends Component {
   handleCommentVote = (inc_votes) => {
     const ID = this.props.comment_id;
 
-    // render before async API call
     this.setState({ commentWidgetVotes: this.state.commentWidgetVotes + inc_votes })
 
     updateCommentVotes(ID, { inc_votes: inc_votes })

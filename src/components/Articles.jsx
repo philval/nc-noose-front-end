@@ -10,7 +10,7 @@ class Articles extends Component {
 
   state = {
     isLoading: true,
-    hasError: false, // TODO rename noArticles    
+    hasError: false,
     articles: [],
     newArticle: { topic: "coding", author: this.props.user },
     topic: '',
@@ -18,26 +18,25 @@ class Articles extends Component {
     displayAddArticle: false,
   }
 
-
-  getTheArticles = (topic, sortBy) => { // TODO rename to fetchArticles
+  fetchArticles = (topic, sortBy) => {
     getArticles(topic, sortBy)
       .then(({ articles }) => articles.length === 0
-        ? this.setState({ hasError: true, articles: [] })
-        : this.setState({ isLoading: false, hasError: false, articles: articles }))
+        ? this.setState({ hasError: true, isLoading: false, articles: [] })
+        : this.setState({ hasError: false, isLoading: false, articles: articles }))
       .catch(err => console.log(err))
   }
 
   componentDidMount = () => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
-    this.getTheArticles(topic, sortBy)
+    this.fetchArticles(topic, sortBy)
   }
 
   componentDidUpdate = (prevProps, prevState) => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
     if (prevProps.topic !== this.props.topic || prevState.sortBy !== this.state.sortBy) {
-      this.getTheArticles(topic, sortBy)
+      this.fetchArticles(topic, sortBy)
     }
   }
 

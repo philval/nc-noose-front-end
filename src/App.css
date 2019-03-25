@@ -478,7 +478,6 @@ button:active {
   border-radius: 5px;  
 }
 
-/* TODO missing home-contianer when filter by topic */
 .home-sidebar, .home-articles {
   background-color: white;
   margin-bottom: 2rem;
@@ -570,7 +569,7 @@ footer a:hover
 }
 
 
-/* credit http://tobiasahlin.com/spinkit/ */
+/* credit tobiasahlin.com/spinkit/ */
 .spinner {
   margin: 100px auto 0;
   width: 70px;

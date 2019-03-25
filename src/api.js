@@ -1,4 +1,3 @@
-// const BASE_URL = 'http://localhost:9090/api';
 const BASE_URL = 'https://nc-noose.herokuapp.com/api';
 
 function getTopics() {
@@ -17,7 +16,6 @@ function postTopic(body) {
     .then(response => response.json())
 }
 
-// HERE one is superflous...
 function getArticles(topic, sortBy) {
   let url = BASE_URL + '/articles?';
   if (topic) url += `topic=${topic}`;
@@ -26,14 +24,9 @@ function getArticles(topic, sortBy) {
     .then(response => response.json())
 }
 
-function getAllArticles(sortBy) {
-  return fetch(`${BASE_URL}/articles?sort_by=${sortBy}`)
-    .then(response => response.json())
-}
-
 function getArticleByID(id) {
   return fetch(`${BASE_URL}/articles/${id}`)
-    .then(response => response.json())
+    .then(response => console.log(response) || response.json())
 }
 
 function postArticle(body) {
@@ -58,7 +51,7 @@ function deleteArticleByID(ID) {
 
 function getCommentsByArticleByID(id) {
   return fetch(`${BASE_URL}/articles/${id}/comments`)
-    .then(response => response.json())
+    .then(response => console.log(response) || response.json())
 }
 
 function getArticlesByTopic(topic = '') {
@@ -77,7 +70,6 @@ function postComment(article_id, body) {
     .then(response => response.json())
 }
 
-// DELETE /api/comments/:comment_id
 function deleteCommentByID(ID) {
   return fetch(`${BASE_URL}/comments/${ID}`, {
     method: 'DELETE',
@@ -109,17 +101,15 @@ function updateCommentVotes(ID, body) {
     .then(response => response.json())
 }
 
-// TODO tidy up
 export {
-  getArticles,
-  getAllArticles,
-  getArticleByID,
-  getCommentsByArticleByID,
   getTopics,
   postTopic,
+  getArticles,
+  getArticleByID,
   getArticlesByTopic,
   postArticle,
   deleteArticleByID,
+  getCommentsByArticleByID,
   postComment,
   deleteCommentByID,
   updateArticleVotes,

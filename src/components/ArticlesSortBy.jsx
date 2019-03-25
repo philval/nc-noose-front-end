@@ -1,6 +1,5 @@
 import React from 'react';
 
-// destructure props
 const ArticlesSortBy = ({ handleSortOrder }) => {
   return (
 

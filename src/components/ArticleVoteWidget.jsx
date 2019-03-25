@@ -10,7 +10,6 @@ class ArticleVoteWidget extends Component {
   handleArticleVote = (inc_votes) => {
     const ID = this.props.article_id;
 
-    // render before async API call
     this.setState({ articleWidgetVotes: this.state.articleWidgetVotes + inc_votes })
 
     updateArticleVotes(ID, { inc_votes: inc_votes })
