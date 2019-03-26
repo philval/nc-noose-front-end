@@ -32,7 +32,7 @@ class Article extends Component {
 
   // optimistic rendering commentCount
   handleCommentChange = (countChange) => {
-    this.setState({ commentCount: +this.state.commentCount + countChange }) // TODO prevState
+    this.setState({ commentCount: +this.state.commentCount + countChange }) // TODO fn prevState
   }
 
   render() {

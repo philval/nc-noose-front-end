@@ -30,15 +30,9 @@ class App extends Component {
     }
   }
 
-  handleUserLoginFormChange = (event) => {
-    const user = event.target.value;
-    this.setState({ user: user, isValidUser: true })
-  }
-
-  handleUserLoginFormSubmit = (event) => {
-    event.preventDefault();
-    if (this.state.user === "grumpy19") { // TODO hardcoded
-      this.setState({ isLoggedIn: true })
+  userLogin = (user) => {
+    if (user === "grumpy19") { // TODO hardcoded
+      this.setState({ isLoggedIn: true, user: "grumpy19" })
       localStorage.setItem("isLoggedIn", "true")
       localStorage.setItem("user", "grumpy19") // hard refresh
     } else {
@@ -57,7 +51,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header isLoggedIn={isLoggedIn} user={user} handleUserLogout={this.handleUserLogout} />
-        <Auth isLoggedIn={isLoggedIn} isValidUser={isValidUser} handleUserLoginFormSubmit={this.handleUserLoginFormSubmit} handleUserLoginFormChange={this.handleUserLoginFormChange} >
+        <Auth isLoggedIn={isLoggedIn} isValidUser={isValidUser} userLogin={this.userLogin} >
           <Router className="home-container">
             <Articles path="/" user={user} />
             <Articles path="/articles/topic/:topic" user={user} />

@@ -26,7 +26,7 @@ function getArticles(topic, sortBy) {
 
 function getArticleByID(id) {
   return fetch(`${BASE_URL}/articles/${id}`)
-    .then(response => console.log(response) || response.json())
+    .then(response => response.json())
 }
 
 function postArticle(body) {
@@ -51,7 +51,7 @@ function deleteArticleByID(ID) {
 
 function getCommentsByArticleByID(id) {
   return fetch(`${BASE_URL}/articles/${id}/comments`)
-    .then(response => console.log(response) || response.json())
+    .then(response => response.json())
 }
 
 function getArticlesByTopic(topic = '') {

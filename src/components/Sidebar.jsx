@@ -26,7 +26,7 @@ class Sidebar extends Component {
   addTopic = (postBody) => {
     postTopic(postBody)
       .then(({ topic }) => this.setState((prevState) => ({
-        topics: [topic, ...this.state.topics],
+        topics: [topic, ...prevState.topics],
         displayAddTopic: !prevState.displayAddTopic
       })
       ))

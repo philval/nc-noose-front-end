@@ -22,8 +22,8 @@ class CommentVoteWidget extends Component {
     return (
       <Fragment>
         <span>Votes : {commentVotes + commentWidgetVotes}</span>
-        <button onClick={() => this.handleCommentVote(1)} disabled={this.state.commentWidgetVotes === 1} className="vote-arrow">&uarr;</button>
-        <button onClick={() => this.handleCommentVote(-1)} disabled={this.state.commentWidgetVotes === -1} className="vote-arrow">&darr;</button>
+        <button onClick={() => this.handleCommentVote(1)} disabled={commentWidgetVotes === 1} className="vote-arrow">&uarr;</button>
+        <button onClick={() => this.handleCommentVote(-1)} disabled={commentWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>
     )
   }

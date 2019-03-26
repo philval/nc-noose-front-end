@@ -23,12 +23,12 @@ class ArticleComments extends Component {
     this.setState((prevState) => ({ displayAddComment: !prevState.displayAddComment }))
   }
 
-  addComment(article_id, postBody) {
+  addComment = (article_id, postBody) => {
     // const article_id = this.props.articleID;
     // console.log(article_id)
     postComment(article_id, postBody)
-      .then(({ comment }) => console.log(comment) || this.setState((prevState) => ({
-        comments: [comment, ...this.state.comments],
+      .then(({ comment }) => this.setState((prevState) => ({
+        comments: [comment, ...prevState.comments],
         displayAddComment: !prevState.displayAddComment
       })
       ))

@@ -22,8 +22,8 @@ class ArticleVoteWidget extends Component {
     return (
       <Fragment>
         <span>Votes : {articleVotes + articleWidgetVotes}</span>
-        <button onClick={() => this.handleArticleVote(1)} disabled={this.state.articleWidgetVotes === 1} className="vote-arrow">&uarr;</button>
-        <button onClick={() => this.handleArticleVote(-1)} disabled={this.state.articleWidgetVotes === -1} className="vote-arrow">&darr;</button>
+        <button onClick={() => this.handleArticleVote(1)} disabled={articleWidgetVotes === 1} className="vote-arrow">&uarr;</button>
+        <button onClick={() => this.handleArticleVote(-1)} disabled={articleWidgetVotes === -1} className="vote-arrow">&darr;</button>
       </Fragment>
     )
   }

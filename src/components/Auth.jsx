@@ -1,9 +1,9 @@
 import React from 'react';
 import LoginForm from './LoginForm'
 
-const Auth = ({ isLoggedIn, isValidUser, handleUserLoginFormSubmit, handleUserLoginFormChange, children }) => {
+const Auth = ({ isLoggedIn, isValidUser, userLogin, children }) => {
 
-    return isLoggedIn ? children : <LoginForm handleUserLoginFormSubmit={handleUserLoginFormSubmit} handleUserLoginFormChange={handleUserLoginFormChange} isValidUser={isValidUser} />
+    return isLoggedIn ? children : <LoginForm isValidUser={isValidUser} userLogin={userLogin} />
 }
 
 export default Auth

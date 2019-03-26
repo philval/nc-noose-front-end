@@ -34,7 +34,7 @@ class Articles extends Component {
   componentDidUpdate = (prevProps, prevState) => {
     const topic = this.props.topic;
     const sortBy = this.state.sortBy;
-    if (prevProps.topic !== this.props.topic || prevState.sortBy !== this.state.sortBy) {
+    if (prevProps.topic !== topic || prevState.sortBy !== sortBy) {
       this.fetchArticles(topic, sortBy)
     }
   }
@@ -51,7 +51,7 @@ class Articles extends Component {
   addArticle = (postBody) => {
     postArticle(postBody)
       .then(({ article }) => this.setState((prevState) => ({
-        articles: [article, ...this.state.articles],
+        articles: [article, ...prevState.articles],
         displayAddArticle: !prevState.displayAddArticle
       })
       ))

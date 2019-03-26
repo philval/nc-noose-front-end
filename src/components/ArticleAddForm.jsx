@@ -4,7 +4,7 @@ import TopicSelect from './TopicSelect'
 class ArticleAddForm extends Component {
 
   state = {
-    newArticle: { topic: "coding", author: this.props.user },
+    newArticle: { topic: "coding", author: this.props.user }, // TODO bad pattern
   }
 
   handleArticleAddFormChange = (event) => {
