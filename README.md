@@ -4,11 +4,13 @@ NC Noose is a social news aggregation, web content rating, and discussion websit
 
 NC Noose has articles which are divided into topics. Each article has user curated ratings and can be voted up or down. Users can add or delete comments on an article. Comments can also be voted up or down.
 
-LIVE DEMO [https://nc-noose.netlify.com/](https://nc-noose.netlify.com/)
+FRONT-END DEMO [https://nc-noose.netlify.com/](https://nc-noose.netlify.com/)
 
-FRONTEND REPO [https://github.com/philval/fe2-nc-knews/](https://github.com/philval/fe2-nc-knews/)
+FRONT-END REPO [https://github.com/philval/nc-noose-front-end](https://github.com/philval/nc-noose-front-end)
 
-BACKEND REPO [https://github.com/philval/BE2-NC-Knews](https://github.com/philval/BE2-NC-Knews)
+BACK-END DEMO [https://nc-noose.herokuapp.com/api/articles](https://nc-noose.herokuapp.com/api/articles)
+
+BACK-END REPO [https://github.com/philval/nc-noose-back-end](https://github.com/philval/nc-noose-back-end)
 
 # LOCAL INSTALLATION
 
