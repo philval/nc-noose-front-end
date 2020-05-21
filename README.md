@@ -12,11 +12,25 @@ BACK-END DEMO [https://nc-noose.herokuapp.com/api/articles](https://nc-noose.her
 
 BACK-END REPO [https://github.com/philval/nc-noose-back-end](https://github.com/philval/nc-noose-back-end)
 
-# LOCAL INSTALLATION
+## GETTING STARTED
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Pre-requisites
+
+Node v12.6.13 (LTS) or later
+
+## Local installation
+
+Fork and clone the repository from Github
+
+cd into the repository and run npm install to install the required dependencies.
+
+Run npm start
+
+Login as user "grumpy19".
 
 ## Available Scripts
+
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, you can run:
 
@@ -46,7 +60,3 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 ## Learn More
 
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-## DEPLOY TO NETLIFY
-
-XXXX
